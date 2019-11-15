@@ -1,11 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 
 namespace Task1
 {
     public class GCDCalculator
     {
+        private Stopwatch sw;
+        private bool isFirstIteration;
+
+        public GCDCalculator()
+        {
+            sw = new Stopwatch();
+            isFirstIteration = true;
+        }
+
         /// <summary>
         /// Вычисляет НОД двух целых чисел по Алгоритму Евклида. Если одно из чисел 0 - возвращает 0.
         /// </summary>
@@ -79,6 +89,79 @@ namespace Task1
             nod = EuclideanGCD(d, nod);
             nod = EuclideanGCD(e, nod);
             return nod;
+        }
+        /// <summary>
+        /// Вычисляет НОД двух целых чисел по бинарному алгоритму. Если одно из чисел 0 - возвращает 0.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="time">время затраченное на вычисление</param>
+        /// <returns></returns>
+        public int BinaryGCD(int a, int b, out TimeSpan time)
+        {
+            if (isFirstIteration == true)
+            {
+                isFirstIteration = false;
+                sw.Start();
+                if (a == 0 || b == 0)
+                {
+                    sw.Stop();
+                    time = sw.Elapsed;
+                    sw.Reset();
+                    isFirstIteration = true;
+                    return 0;
+                }
+            }
+            if (a == 0)
+            {
+                sw.Stop();
+                time = sw.Elapsed;
+                sw.Reset();
+                isFirstIteration = true;
+                return b;
+            }
+            if (b == 0)
+            {
+                sw.Stop();
+                time = sw.Elapsed;
+                sw.Reset();
+                isFirstIteration = true;
+                return a;
+            }
+            if (a == b)
+            {
+                sw.Stop();
+                time = sw.Elapsed;
+                sw.Reset();
+                isFirstIteration = true;
+                return a;
+            }
+
+            bool aIsEven = a % 2 == 0;
+            bool bIsEven = b % 2 == 0;
+
+            if (aIsEven && bIsEven)
+            {
+                return (BinaryGCD(a >> 1, b >> 1, out time) << 1);
+            }
+            else if (aIsEven && !bIsEven)
+            {
+                return BinaryGCD(a >> 1, b, out time);
+            }
+            else if (bIsEven)
+            {
+                return BinaryGCD(a, b >> 1, out time);
+            }
+            else if (a > b)
+            {
+                return BinaryGCD((a - b) >> 1, b, out time);
+            }
+            else
+            {
+                return BinaryGCD(a, (b - a) >> 1, out time);
+            }
+
+
         }
     }
 }
