@@ -5,10 +5,25 @@ using System.Diagnostics;
 
 namespace Task1
 {
+    /// <summary>
+    /// Представляет данные для гистограммы (Название метода вычисления и затраченное время.)
+    /// </summary>
+    public struct Gisto
+    {
+        public string methodName;
+        public TimeSpan elapsedTime;
+
+        public Gisto(string name, TimeSpan time)
+        {
+            methodName = name;
+            elapsedTime = time;
+        }
+    }
     public class GCDCalculator
     {
         private Stopwatch sw;
         private bool isFirstIteration;
+
 
         public GCDCalculator()
         {
@@ -169,6 +184,22 @@ namespace Task1
             }
 
 
+        }
+
+        /// <summary>
+        /// Подготавливает данные о времени, затрачиваемом на вычисление НОД различными методами, для построения гистограммы.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public List<Gisto> PrepareDataToCompare(int a, int b)
+        {
+            List<Gisto> result = new List<Gisto>();
+            EuclideanGCD(a, b, out TimeSpan time1);
+            BinaryGCD(a, b, out TimeSpan time2);
+            result.Add(new Gisto("Euclidean", time1));
+            result.Add(new Gisto("Binary", time2));
+            return result;
         }
     }
 }
