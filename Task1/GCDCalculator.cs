@@ -22,10 +22,14 @@ namespace Task1
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        public int EuclideanGCD(int a, int b)
+        public int EuclideanGCD(int a, int b, out TimeSpan time)
         {
+            sw.Start();
             if (a == 0 || b == 0)
             {
+                sw.Stop();
+                time += sw.Elapsed;
+                sw.Reset();
                 return 0;
             }
 
@@ -40,6 +44,9 @@ namespace Task1
                     b %= a;
                 }
             }
+            sw.Stop();
+            time += sw.Elapsed;
+            sw.Reset();
             return (a + b);
         }
 
@@ -52,8 +59,8 @@ namespace Task1
         /// <returns></returns>
         public int EuclideanGCD(int a, int b, int c)
         {
-            int nod = EuclideanGCD(a, b);
-            nod = EuclideanGCD(c, nod);
+            int nod = EuclideanGCD(a, b, out TimeSpan time);
+            nod = EuclideanGCD(c, nod,  out time);
             return nod;
         }
 
@@ -67,9 +74,9 @@ namespace Task1
         /// <returns></returns>
         public int EuclideanGCD(int a, int b, int c, int d)
         {
-            int nod = EuclideanGCD(a, b);
-            nod = EuclideanGCD(c, nod);
-            nod = EuclideanGCD(d, nod);
+            int nod = EuclideanGCD(a, b, out TimeSpan time);
+            nod = EuclideanGCD(c, nod, out time);
+            nod = EuclideanGCD(d, nod, out time);
             return nod;
         }
 
@@ -84,10 +91,10 @@ namespace Task1
         /// <returns></returns>
         public int EuclideanGCD(int a, int b, int c, int d, int e)
         {
-            int nod = EuclideanGCD(a, b);
-            nod = EuclideanGCD(c, nod);
-            nod = EuclideanGCD(d, nod);
-            nod = EuclideanGCD(e, nod);
+            int nod = EuclideanGCD(a, b, out TimeSpan time);
+            nod = EuclideanGCD(c, nod, out time);
+            nod = EuclideanGCD(d, nod, out time);
+            nod = EuclideanGCD(e, nod, out time);
             return nod;
         }
         /// <summary>
@@ -106,7 +113,7 @@ namespace Task1
                 if (a == 0 || b == 0)
                 {
                     sw.Stop();
-                    time = sw.Elapsed;
+                    time += sw.Elapsed;
                     sw.Reset();
                     isFirstIteration = true;
                     return 0;
@@ -115,7 +122,7 @@ namespace Task1
             if (a == 0)
             {
                 sw.Stop();
-                time = sw.Elapsed;
+                time += sw.Elapsed;
                 sw.Reset();
                 isFirstIteration = true;
                 return b;
@@ -123,7 +130,7 @@ namespace Task1
             if (b == 0)
             {
                 sw.Stop();
-                time = sw.Elapsed;
+                time += sw.Elapsed;
                 sw.Reset();
                 isFirstIteration = true;
                 return a;
@@ -131,7 +138,7 @@ namespace Task1
             if (a == b)
             {
                 sw.Stop();
-                time = sw.Elapsed;
+                time += sw.Elapsed;
                 sw.Reset();
                 isFirstIteration = true;
                 return a;

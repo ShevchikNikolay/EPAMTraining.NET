@@ -8,13 +8,13 @@ namespace Task1.Tests
     public class GCDCalculatorTests
     {
         [TestMethod]
-        public void EucldeanGCD_CorrectInput_10returned()
+        public void EucldeanGCD_CorrectInput_202returned()
         {
             #region arrange
 
-            int a = 30;
-            int b = 50;
-            int expected = 10;
+            int a = 116150;
+            int b = 232704;
+            int expected = 202;
 
             #endregion
 
@@ -23,7 +23,8 @@ namespace Task1.Tests
             #region act
 
             GCDCalculator calc = new GCDCalculator();
-            int actual = calc.EuclideanGCD(a, b);
+            int actual = calc.EuclideanGCD(a, b, out TimeSpan time);
+            Debug.WriteLine(time.TotalMilliseconds);
 
             #endregion
 
@@ -52,7 +53,8 @@ namespace Task1.Tests
             #region act
 
             GCDCalculator calc = new GCDCalculator();
-            int actual = calc.EuclideanGCD(a, b);
+            int actual = calc.EuclideanGCD(a, b, out TimeSpan time);
+            Debug.WriteLine(time.TotalMilliseconds);
 
             #endregion
 
