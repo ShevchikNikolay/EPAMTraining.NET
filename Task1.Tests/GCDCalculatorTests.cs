@@ -37,14 +37,15 @@ namespace Task1.Tests
             #endregion
         }
 
+
         [TestMethod]
-        public void EuclideanGCD_Input0_0returned()
+        [ExpectedException(typeof(ArgumentException))]
+        public void EuclideanGCD_BothInputs0_ArgumentException()
         {
             #region arrange
 
             int a = 0;
-            int b = 50;
-            int expected = 0;
+            int b = 0;
 
             #endregion
 
@@ -53,16 +54,8 @@ namespace Task1.Tests
             #region act
 
             GCDCalculator calc = new GCDCalculator();
-            int actual = calc.EuclideanGCD(a, b, out TimeSpan time);
+            calc.EuclideanGCD(a, b, out TimeSpan time);
             Debug.WriteLine(time.TotalMilliseconds);
-
-            #endregion
-
-
-
-            #region assert
-
-            Assert.AreEqual(expected, actual);
 
             #endregion
         }
@@ -96,16 +89,15 @@ namespace Task1.Tests
 
             #endregion
         }
-
         [TestMethod]
-        public void EuclideanGCD_Input0ForMultipleNumbers_0returned()
+        public void EuclideanGCD_LastNumberNotZero_156returned()
         {
             #region arrange
 
-            int a = 500;
-            int b = 34;
-            int c = 0;
-            int expected = 0;
+            int a = 0;
+            int b = 0;
+            int c = 156;
+            int expected = 156;
 
             #endregion
 
@@ -123,6 +115,26 @@ namespace Task1.Tests
             #region assert
 
             Assert.AreEqual(expected, actual);
+
+            #endregion
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void EuclideanGCD_AllOfInputsAre0_ArgumentException()
+        {
+            #region arrange
+
+            int a = 0;
+            int b = 0;
+            int c = 0;
+
+            #endregion
+            #region act
+
+            GCDCalculator calc = new GCDCalculator();
+            calc.EuclideanGCD(a, b, c);
 
             #endregion
         }
@@ -158,13 +170,13 @@ namespace Task1.Tests
         }
 
         [TestMethod]
-        public void BinaryGCD_Input0_0returned()
+        [ExpectedException(typeof(ArgumentException))]
+        public void BinaryGCD_Input0_ArgumentException()
         {
             #region arrange
 
-            int a = 116150;
+            int a = 0;
             int b = 0;
-            int expected = 0;
 
             #endregion
 
@@ -173,16 +185,8 @@ namespace Task1.Tests
             #region act
 
             GCDCalculator calc = new GCDCalculator();
-            int actual = calc.BinaryGCD(a, b, out TimeSpan time);
+            calc.BinaryGCD(a, b, out TimeSpan time);
             Debug.WriteLine(time.TotalMilliseconds);
-
-            #endregion
-
-
-
-            #region assert
-
-            Assert.AreEqual(expected, actual);
 
             #endregion
         }
