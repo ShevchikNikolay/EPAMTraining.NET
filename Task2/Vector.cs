@@ -87,11 +87,19 @@ namespace Task2
 
         public static bool operator ==(Vector v1, Vector v2)
         {
+            if (v2 is null)
+            {
+                return false;
+            }
             return (v1.X == v2.X && v1.Y == v2.Y && v1.Z == v2.Z);
         }
 
         public static bool operator !=(Vector v1, Vector v2)
         {
+            if(v2 is null)
+            {
+                return true;
+            }
             return (v1.X != v2.X || v1.Y != v2.Y || v1.Z != v2.Z);
         }
 
@@ -111,7 +119,7 @@ namespace Task2
                 return false;
             }
 
-            return (this.X.Equals(item.X) && this.Y.Equals(item.Y) && this.Z.Equals(item.Z));
+            return (X.Equals(item.X) && Y.Equals(item.Y) && Z.Equals(item.Z));
         }
         public override int GetHashCode()
         {
