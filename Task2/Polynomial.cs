@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Task2
 {
@@ -54,10 +55,10 @@ namespace Task2
         }
 
         /// <summary>
-        /// Оператор вычетания.
+        /// Оператор вычитания.
         /// </summary>
         /// <param name="left">Полином - уменьшаемое</param>
-        /// <param name="right">Полином - вычетаемое</param>
+        /// <param name="right">Полином - вычитаемое</param>
         /// <returns>Разность полиномов</returns>
         public static Polynomial operator -(Polynomial left, Polynomial right)
         {
@@ -109,6 +110,38 @@ namespace Task2
             }
 
             return new Polynomial(resultCoefficients);
+        }
+
+        public static bool operator ==(Polynomial left, Polynomial right)
+        {
+            if (right is null)
+            {
+                return false;
+            }
+            return (left.Coefficients.SequenceEqual(right.Coefficients));
+        }
+
+        public static bool operator !=(Polynomial left, Polynomial right)
+        {
+            if (right is null)
+            {
+                return true;
+            }
+            return !(left.Coefficients.SequenceEqual(right.Coefficients));
+        }
+        public override bool Equals(object obj)
+        {
+            var item = obj as Polynomial;
+            if (item == null)
+            {
+                return false;
+            }
+
+            return (this == item);
+        }
+        public override int GetHashCode()
+        {
+            return Coefficients.GetHashCode();
         }
 
     }

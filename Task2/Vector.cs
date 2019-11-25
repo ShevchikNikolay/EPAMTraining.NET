@@ -64,10 +64,10 @@ namespace Task2
         }
 
         /// <summary>
-        /// Оператор вычетания.
+        /// Оператор вычитания.
         /// </summary>
         /// <param name="v1">Уменьшаемый вектор.</param>
-        /// <param name="v2">Вычетаемый вектор.</param>
+        /// <param name="v2">Вычитаемый вектор.</param>
         /// <returns></returns>
         public static Vector operator -(Vector v1, Vector v2)
         {
