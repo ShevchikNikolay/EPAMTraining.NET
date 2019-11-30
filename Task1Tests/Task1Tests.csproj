@@ -5,12 +5,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9D72DDEE-0648-440D-BFF3-D0E2C0E3DD42}</ProjectGuid>
+    <ProjectGuid>{6330AE60-8D1F-46CF-B6DE-4B05B6F3E47A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Task1.Tests</RootNamespace>
-    <AssemblyName>Task1.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <RootNamespace>Task1Tests</RootNamespace>
+    <AssemblyName>Task1Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Task1\Task1.csproj">
-      <Project>{31092b05-4d8a-4b60-b5d6-77590ffc4a3b}</Project>
+      <Project>{0a80de97-a25a-4ce1-bea7-21b667583eb0}</Project>
       <Name>Task1</Name>
     </ProjectReference>
   </ItemGroup>
