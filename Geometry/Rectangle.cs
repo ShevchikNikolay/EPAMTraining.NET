@@ -7,18 +7,16 @@ using System.Threading.Tasks;
 namespace Geometry
 {
 
-    public class Rectangle: Shape
+    public class Rectangle : Shape
     {
-        public double Width { get; private set; }
-        public double Height { get; private set; }
+        public double Width { get; }
+        public double Height { get; }
 
 
         public Rectangle(double width, double height, Material material): base(material)
         {
             Width = width;
             Height = height;
-            Area = CalculateArea();
-            Perimeter = CalculatePerimeter();
         }
 
         protected override double CalculateArea()
