@@ -46,5 +46,10 @@ namespace Geometry
         {
             return (Radius.GetHashCode()*31);
         }
+
+        public override string ToString()
+        {
+            return ($"Shape:circle, Area:{Area}, Radius:{Radius}."); 
+        }
     }
 }

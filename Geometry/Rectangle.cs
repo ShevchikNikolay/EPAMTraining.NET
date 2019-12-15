@@ -28,5 +28,29 @@ namespace Geometry
         {
             return ((Width + Height) * 2);
         }
+
+        public override bool Equals(object obj)
+        {
+
+            if (obj == null)
+            {
+                return false;
+            }
+
+            if (!(obj is Rectangle rectangle))
+            {
+                return false;
+            }
+
+            return (Area == rectangle.Area && Perimeter == rectangle.Perimeter);
+        }
+        public override int GetHashCode()
+        {
+            return (Width.GetHashCode() * 31 + Height.GetHashCode());
+        }
+        public override string ToString()
+        {
+            return ($"Shape:rectangle, Area:{Area}, Width:{Width}, Height:{Height}.");
+        }
     }
 }

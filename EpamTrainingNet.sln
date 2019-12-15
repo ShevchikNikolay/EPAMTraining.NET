@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geometry", "Geometry\Geomet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaintShop", "PaintShop\PaintShop.csproj", "{39EEFF2F-21BC-450C-8252-689C5C3A96F3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store", "Store\Store.csproj", "{D5DDC3CC-9B9E-48EA-80ED-681DCA3C26EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{39EEFF2F-21BC-450C-8252-689C5C3A96F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39EEFF2F-21BC-450C-8252-689C5C3A96F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39EEFF2F-21BC-450C-8252-689C5C3A96F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5DDC3CC-9B9E-48EA-80ED-681DCA3C26EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5DDC3CC-9B9E-48EA-80ED-681DCA3C26EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5DDC3CC-9B9E-48EA-80ED-681DCA3C26EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5DDC3CC-9B9E-48EA-80ED-681DCA3C26EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
