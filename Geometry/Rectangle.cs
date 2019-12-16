@@ -31,8 +31,16 @@ namespace Geometry
         /// <param name="material">Material of the rectangle.</param>
         public Rectangle(double width, double height, Material material): base(material)
         {
-            Width = width;
-            Height = height;
+            if (width > height)
+            {
+                Width = width;
+                Height = height;
+            }
+            else
+            {
+                Width = height;
+                Height = width;
+            }
         }
 
         /// <summary>
@@ -43,8 +51,44 @@ namespace Geometry
         /// <param name="shape">Material of the rectangle.</param>
         public Rectangle(double width, double height, ref Shape shape) : base(ref shape)
         {
-            Width = width;
-            Height = height;
+            if (width > height)
+            {
+                Width = width;
+                Height = height;
+            }
+            else
+            {
+                Width = height;
+                Height = width;
+            }
+
+            switch (shape)
+            {
+                case Circle circle:
+                    if (2 * circle.Radius < Width)
+                    {
+                        throw new Exception("You can't cut such a figure. Try to reduce it.");
+                    }
+                    break;
+
+                case Triangle triangle:
+                    if (Width > triangle.FirstSide)
+                    {
+                        throw new Exception("You can't cut such a figure. Try to reduce it.");
+                    }
+                    if (GetArea() > triangle.GetArea())
+                    {
+                        throw new Exception("You can't cut such a figure. Try to reduce it.");
+                    }
+                    break;
+
+                case Rectangle rectangle:
+                    if (Height > rectangle.Height || Width > rectangle.Width || GetArea() > rectangle.GetArea())
+                    {
+                        throw new Exception("You can't cut such a figure. Try to reduce it.");
+                    }
+                    break;
+            }
             shape = null;
         }
 

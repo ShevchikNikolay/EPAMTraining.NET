@@ -29,6 +29,40 @@ namespace Geometry
         }
 
         /// <summary>
+        /// Initialize a new instance of the Circle class with given radius and parent shape.
+        /// </summary>
+        /// <param name="radius"></param>
+        /// <param name="shape"></param>
+        public Circle(double radius, ref Shape shape) : base(ref shape)
+        {
+            Radius = radius;
+
+            switch (shape)
+            {
+                case Rectangle rectangle:
+                    if (Radius > rectangle.Height)
+                    {
+                        throw new Exception("This circle to big for parent figure.");
+                    }
+                    break;
+                case Triangle triangle:
+                    double maxRadius = 2 * triangle.GetArea() / triangle.GetPerimeter();
+                    if (Radius > maxRadius)
+                    {
+                        throw new Exception("This circle to big for parent figure.");
+                    }
+                    break;
+                case Circle circle:
+                    if (Radius >= circle.Radius)
+                    {
+                        throw new Exception("This circle to big for parent figure.");
+                    }
+                    break;
+            }
+            shape = null;
+        }
+
+        /// <summary>
         /// Calculate area of the circle.
         /// </summary>
         /// <returns></returns>
