@@ -11,19 +11,38 @@ using PaintShop;
 
 namespace Store
 {
+    /// <summary>
+    /// Represents the box for figures.
+    /// </summary>
     public class Box
     {
+        /// <summary>
+        /// Box capacity.
+        /// </summary>
         public const int MaxCount = 20;
+
+        /// <summary>
+        /// Path to xml-file.
+        /// </summary>
         public const string Path = @"..\..\Box.xml";
 
+        /// <summary>
+        /// Contents of the box.
+        /// </summary>
         public List<Shape> Contents { get; set; }
 
+        /// <summary>
+        /// Initialize a new instance of the Box class.
+        /// </summary>
         public Box()
         {
             Contents = new List<Shape>();
         }
 
-
+        /// <summary>
+        /// Add figure to the box.
+        /// </summary>
+        /// <param name="shape">Figure to adding.</param>
         public void AddShape(Shape shape)
         {
             if (Contents.Count < MaxCount)
@@ -40,6 +59,11 @@ namespace Store
             throw new Exception("The box is full.");
         }
 
+        /// <summary>
+        /// Show figure by it's index in the collection.
+        /// </summary>
+        /// <param name="number">Index.</param>
+        /// <returns></returns>
         public Shape GetShapeByNumber(int number)
         {
             if (Contents.Count > number)
@@ -52,6 +76,11 @@ namespace Store
             }
         }
 
+        /// <summary>
+        /// Extract figures by it's index in the collection.
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
         public Shape ExtractShapeByNumber(int number)
         {
             Shape result;
@@ -66,6 +95,12 @@ namespace Store
                 throw new IndexOutOfRangeException($"Figure with number {number} isn't exist.");
             }
         }
+
+        /// <summary>
+        /// Replace the figure in the collection by it's index with given figure.
+        /// </summary>
+        /// <param name="shape">Figure to replace</param>
+        /// <param name="number">Index</param>
         public void ReplaceShapeByNumber(Shape shape, int number)
         {
             if (Contents.Count > number)
@@ -77,6 +112,12 @@ namespace Store
                 throw new IndexOutOfRangeException($"Figure with number {number} isn't exist.");
             }
         }
+
+        /// <summary>
+        /// Find the figure in the collection by the given example.
+        /// </summary>
+        /// <param name="shape">Exemple to find.</param>
+        /// <returns></returns>
         public Shape GetEqualShape(Shape shape)
         {
             Shape result;
@@ -91,10 +132,19 @@ namespace Store
             }
         }
 
+        /// <summary>
+        /// Shows how many figures are present in the box.
+        /// </summary>
+        /// <returns></returns>
         public int GetCountOfShapes()
         {
             return Contents.Count;
         }
+
+        /// <summary>
+        /// Calculate total area of figures in the box.
+        /// </summary>
+        /// <returns></returns>
         public double GetTotalArea()
         {
             double result = 0;
@@ -104,6 +154,11 @@ namespace Store
             }
             return result;
         }
+
+        /// <summary>
+        /// Calculate total perimeter of figures in the box.
+        /// </summary>
+        /// <returns></returns>
         public double GetTotalPerimeter()
         {
             double result = 0;
@@ -114,6 +169,10 @@ namespace Store
             return result;
         }
 
+        /// <summary>
+        /// Extract all cicles from the box.
+        /// </summary>
+        /// <returns></returns>
         public List<Shape> ExtractAllCircles()
         {
             var result = new List<Shape>();
@@ -128,6 +187,10 @@ namespace Store
             return result;
         }
 
+        /// <summary>
+        /// Extract all figures, which material is film.
+        /// </summary>
+        /// <returns></returns>
         public List<Shape> ExtractAllFilmShapes()
         {
             var result = new List<Shape>();
@@ -142,6 +205,10 @@ namespace Store
             return result;
         }
 
+        /// <summary>
+        /// Provide export information about the box contents to the xml-file with XmlWriter.
+        /// </summary>
+        /// <param name="path">Path to the xml-file.</param>
         public void ExportToXmlWithXmlWriter(string path = Path)
         {
             XmlWriterSettings settings = new XmlWriterSettings
@@ -162,6 +229,10 @@ namespace Store
             writer.Close();
         }
 
+        /// <summary>
+        /// Provide export information about the box contents to the xml-file with StreamWriter.
+        /// </summary>
+        /// <param name="path">Path to the xml-file.</param>
         public void ExportToXmlWithStreamWriter(string path = Path)
         {
             StreamWriter writer = new StreamWriter(path);
@@ -177,6 +248,10 @@ namespace Store
             writer.Close();
         }
 
+        /// <summary>
+        /// Provide import information about the box contents from the xml-file with XmlReader.
+        /// </summary>
+        /// <param name="path">Path to the xml-file.</param>
         public void ImportFromXmlWithXmlReader(string path = Path)
         {
             Contents = new List<Shape>();
