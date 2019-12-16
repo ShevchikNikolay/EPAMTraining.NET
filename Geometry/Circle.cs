@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Geometry
 {
@@ -14,12 +16,12 @@ namespace Geometry
             Radius = radius;
         }
 
-        protected override double CalculateArea()
+        public override double GetArea()
         {
             return (Math.PI * Radius * Radius);
         }
 
-        protected override double CalculatePerimeter()
+        public override double GetPerimeter()
         {
             return (Math.PI * 2 * Radius);
         }
@@ -44,12 +46,30 @@ namespace Geometry
         // override object.GetHashCode
         public override int GetHashCode()
         {
-            return (Radius.GetHashCode()*31);
+            return (Radius.GetHashCode() * 31);
         }
 
         public override string ToString()
         {
-            return ($"Shape:circle, Area:{Area}, Radius:{Radius}."); 
+            return ($"Shape:Circle, Area:{GetArea()}, Radius:{Radius}."); 
+        }
+
+        public override void ExportToXml(XmlWriter writer)
+        {
+            writer.WriteStartElement("Figure");
+            writer.WriteElementString("Shape", "Circle");
+            writer.WriteElementString("Color", $"{Color}");
+            writer.WriteElementString("Radius", $"{Radius}");
+            writer.WriteEndElement();
+        }
+
+        public override void ExportToXml(StreamWriter writer)
+        {
+            writer.WriteLine("<Figure>");
+            writer.WriteLine("<Shape>Circle</Shape>");
+            writer.WriteLine($"<Color>{Color}</Color>");
+            writer.WriteLine($"<Radius>{Radius}</Radius>");
+            writer.WriteLine("/Figuree");
         }
     }
 }

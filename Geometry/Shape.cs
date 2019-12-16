@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using PaintShop;
+
 
 namespace Geometry
 {
@@ -14,8 +17,6 @@ namespace Geometry
     }
     public abstract class Shape : IPaintable
     {
-        public double Area { get; set; }
-        public double Perimeter { get; set; }
         public Colores Color { get; private set; }
 
         public Shape(Material material)
@@ -28,15 +29,11 @@ namespace Geometry
             {
                 Color = Colores.Colorless;
             }
-            Perimeter = CalculatePerimeter();
-            Area = CalculateArea();
         }
 
-        public Shape(Shape shape)
+        public Shape(ref Shape shape)
         {
             Color = shape.Color;
-            Perimeter = CalculatePerimeter();
-            Area = CalculateArea();
         }
 
 
@@ -60,8 +57,13 @@ namespace Geometry
             }
         }
 
-        protected abstract double CalculateArea();
-        protected abstract double CalculatePerimeter();
+        public abstract double GetArea();
+
+        public abstract double GetPerimeter();
+
+        public abstract void ExportToXml(XmlWriter writer);
+
+        public abstract void ExportToXml(StreamWriter writer);
 
         // override object.Equals
         public override bool Equals(object obj)
@@ -76,15 +78,13 @@ namespace Geometry
                 return false;
             }
 
-
-            return (Area == shape.Area && Perimeter == shape.Perimeter);
+            return (GetArea() == shape.GetArea() && GetPerimeter() == shape.GetPerimeter());
         }
 
         // override object.GetHashCode
         public override int GetHashCode()
         {
-
-            return (Area.GetHashCode()*31+Perimeter.GetHashCode());
+            return (GetArea().GetHashCode() * 31 + GetPerimeter().GetHashCode());
         }
     }
 }

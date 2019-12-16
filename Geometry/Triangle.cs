@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Geometry
 {
@@ -12,31 +14,108 @@ namespace Geometry
         public double SecondSide { get; }
         public double ThirdSide { get; }
 
-        public Triangle(Material material, double firstSide, double secondSide, double thirdSide) : base(material)
+        public Triangle(double firstSide, double secondSide, double thirdSide, Material material) : base(material)
         {
+            if (firstSide == 0 || secondSide == 0 || thirdSide == 0)
+            {
+                throw new ArgumentException("Side of triangle can't be 0.");
+            }
             FirstSide = firstSide;
-            SecondSide = secondSide;
-            ThirdSide = thirdSide;
+            if (FirstSide > secondSide)
+            {
+                SecondSide = secondSide;
+            }
+            else
+            {
+                SecondSide = firstSide;
+                FirstSide = secondSide;
+            }
+            if (FirstSide > thirdSide)
+            {
+                ThirdSide = thirdSide;
+            }
+            else
+            {
+                ThirdSide = FirstSide;
+                FirstSide = thirdSide;
+            }
+
+            if (FirstSide >= SecondSide + ThirdSide)
+            {
+                throw new Exception("Imposible to create the triangle with such sides.");
+            }
         }
 
-        public Triangle(Shape shape, double firstSide, double secondSide, double thirdSide) : base(shape)
+        public Triangle(double firstSide, double secondSide, double thirdSide, ref Shape shape) : base(ref shape)
         {
+            if (firstSide == 0 || secondSide == 0 || thirdSide == 0)
+            {
+                throw new ArgumentException("Side of triangle can't be 0.");
+            }
             FirstSide = firstSide;
-            SecondSide = secondSide;
-            ThirdSide = thirdSide;
+            if (FirstSide > secondSide)
+            {
+                SecondSide = secondSide;
+            }
+            else
+            {
+                SecondSide = firstSide;
+                FirstSide = secondSide;
+            }
+            if (FirstSide > thirdSide)
+            {
+                ThirdSide = thirdSide;
+            }
+            else
+            {
+                ThirdSide = FirstSide;
+                FirstSide = thirdSide;
+            }
+
+            switch (shape)
+            {
+                case Circle circle:
+                    double circleRadius = (FirstSide * SecondSide * ThirdSide / (4 * GetArea()));
+                    if (circle.Radius < circleRadius)
+                    {
+                        throw new Exception($"You can't cut such big triangle.");
+                    }
+                    break;
+                case Rectangle rectangle:
+                    if (FirstSide > rectangle.Width || GetHeight() > rectangle.Height)
+                    {
+                        throw new Exception($"You can't cut such big triangle.");
+                    }
+                    break;
+
+                case Triangle triangle:
+                    if (FirstSide > triangle.FirstSide || GetArea() >= triangle.GetArea())
+                    {
+                        throw new Exception($"You can't cut such big triangle.");
+                    }
+                    break;
+            }
+            shape = null;
         }
 
-        protected override double CalculateArea()
+        public double GetHeight()
         {
-            var p = Perimeter / 2;
+            return (GetArea() / (FirstSide / 2));
+        }
+
+        public override double GetArea()
+        {
+            var p = GetPerimeter() / 2;
 
             return (Math.Sqrt(p * (p - FirstSide) * (p - SecondSide) * (p - ThirdSide)));
         }
 
-        protected override double CalculatePerimeter()
+        public override double GetPerimeter()
         {
             return (FirstSide + SecondSide + ThirdSide);
         }
+
+
 
         public override bool Equals(object obj)
         {
@@ -51,7 +130,7 @@ namespace Geometry
                 return false;
             }
 
-            return (Area == triangle.Area && Perimeter == triangle.Perimeter);
+            return (GetArea() == triangle.GetArea() && GetPerimeter() == triangle.GetPerimeter());
         }
 
         public override int GetHashCode()
@@ -63,8 +142,29 @@ namespace Geometry
         }
         public override string ToString()
         {
-            return ($"Shape:triangle, Area:{Area}, Perimeter:{Perimeter}, FirstSide:{FirstSide}, SecondSide:{SecondSide}, ThirdSide:{ThirdSide}.");
+            return ($"Shape:Triangle, Area:{GetArea()}, FirstSide:{FirstSide}, SecondSide:{SecondSide}, ThirdSide:{ThirdSide}.");
         }
 
+        public override void ExportToXml(XmlWriter writer)
+        {
+            writer.WriteStartElement("Figure");
+            writer.WriteElementString("Shape", "Triangle");
+            writer.WriteElementString("Color", $"{Color}");
+            writer.WriteElementString("FirstSide", $"{FirstSide}");
+            writer.WriteElementString("SecondSide", $"{SecondSide}");
+            writer.WriteElementString("ThirdSide", $"{ThirdSide}");
+            writer.WriteEndElement();
+        }
+
+        public override void ExportToXml(StreamWriter writer)
+        {
+            writer.WriteLine("<Figure>");
+            writer.WriteLine("<Shape>Rectangle</Shape>");
+            writer.WriteLine($"<Color>{Color}</Color>");
+            writer.WriteLine($"<FirstSide>{FirstSide}</FirstSide>");
+            writer.WriteLine($"<SecondSide>{SecondSide}</SecondSide>");
+            writer.WriteLine($"<ThirdSide>{ThirdSide}</ThirdSide>");
+            writer.WriteLine("/Figure");
+        }
     }
 }
