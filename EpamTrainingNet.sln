@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Network", "Network\Network.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging", "Logging\Logging.csproj", "{FF35C40F-BEBE-48EE-8EE1-7D85B5094B51}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Convertation", "Convertation\Convertation.csproj", "{76900EC5-A301-4945-BF7B-64895D11788D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FF35C40F-BEBE-48EE-8EE1-7D85B5094B51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF35C40F-BEBE-48EE-8EE1-7D85B5094B51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF35C40F-BEBE-48EE-8EE1-7D85B5094B51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76900EC5-A301-4945-BF7B-64895D11788D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76900EC5-A301-4945-BF7B-64895D11788D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76900EC5-A301-4945-BF7B-64895D11788D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76900EC5-A301-4945-BF7B-64895D11788D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
