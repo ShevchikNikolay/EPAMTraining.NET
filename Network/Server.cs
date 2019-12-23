@@ -22,7 +22,7 @@ namespace Network
         public event MessageHandler MessageReseived;
 
         public delegate void LogHandler(IPEndPoint endPoint, string message);
-        public static event LogHandler LoggableMessageReceived;
+        public event LogHandler LoggableMessageReceived;
 
 
         public Server()
