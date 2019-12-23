@@ -5,26 +5,54 @@ using System.Threading.Tasks;
 
 namespace Network
 {
+    /// <summary>
+    /// Class describes a client for tcp connections.
+    /// </summary>
     public class Client
     {
+        /// <summary>
+        /// Port number to connect.
+        /// </summary>
         public const int Port = 13000;
+
+        /// <summary>
+        /// Address of server.
+        /// </summary>
         public const string Address = "127.0.0.1";
+
+        /// <summary>
+        /// Size of incoming buffer.
+        /// </summary>
         public const int BufferSize = 256;
 
-        private TcpClient client;
-        private NetworkStream stream;
-        private string userName;
+        private readonly TcpClient client;
+        private readonly NetworkStream stream;
 
+        /// <summary>
+        /// Delegate accepting any method 'void(string)'.
+        /// </summary>
+        /// <param name="message">Represents a string.</param>
         public delegate void MessageHandler(string message);
+
+        /// <summary>
+        /// Event occures when messagereceived from client.
+        /// </summary>
         public event MessageHandler MessageReceived;
 
-        public Client(string name)
+        /// <summary>
+        /// Initialize an instance of client class.
+        /// </summary>
+        public Client()
         {
             client = new TcpClient(Address, Port);
             stream = client.GetStream();
-            userName = name;
             Task.Run(() => ReceivingDataFromServer());
         }
+
+        /// <summary>
+        /// The method that running sending data task.
+        /// </summary>
+        /// <param name="message">Represents a string.</param>
         public void SendMessage(string message)
         {
             Task.Run(() => SendingDataToTheServer(message));

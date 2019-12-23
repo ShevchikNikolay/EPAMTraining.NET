@@ -3,13 +3,28 @@ using System.Collections.Generic;
 
 namespace Convertation
 {
+    /// <summary>
+    /// Class provide method for transliteration some text.
+    /// </summary>
     public class Transliterator
     {
         private readonly Dictionary<string, string> dictionary;
 
+        /// <summary>
+        /// Delegate accepting any method 'void(string)'.
+        /// </summary>
+        /// <param name="message">Represents a string</param>
         public delegate void MessageHandler(string message);
+
+        /// <summary>
+        /// Event occures when transliteration is compleet.
+        /// </summary>
         public event MessageHandler TransliterationCompleet;
 
+        /// <summary>
+        /// Initialize an instance of transliterator class.
+        /// </summary>
+        /// <param name="client">Represents an instance of a client.</param>
         public Transliterator(Client client)
         {
             client.MessageReceived += (message) => Transliterate(message);

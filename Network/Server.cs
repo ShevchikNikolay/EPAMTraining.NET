@@ -6,24 +6,56 @@ using System.Threading.Tasks;
 
 namespace Network
 {
+    /// <summary>
+    /// Describes a tcpServer.
+    /// </summary>
     public class Server
     {
+        /// <summary>
+        /// port number for incoming connections.
+        /// </summary>
         public const int Port = 13000;
+
+        /// <summary>
+        /// Size of incoming buffer.
+        /// </summary>
         public const int BufferSize = 256;
 
         private readonly TcpListener listener;
         private readonly List<TcpClient> clients;
         private bool isRunning;
 
-
+        /// <summary>
+        /// Delegate accepting any method void(string).
+        /// </summary>
+        /// <param name="message">Represents a string.</param>
         public delegate void MessageHandler(string message);
+
+        /// <summary>
+        /// Event occures when client connected.
+        /// </summary>
         public event MessageHandler ConnectonAccepted;
+
+        /// <summary>
+        /// Event occures when incoming message received.
+        /// </summary>
         public event MessageHandler MessageReseived;
 
+        /// <summary>
+        /// Delegate accepting any method void (IPEndPoint,string)
+        /// </summary>
+        /// <param name="endPoint">Represents an IPEndPoint.</param>
+        /// <param name="message">Represents a string.</param>
         public delegate void LogHandler(IPEndPoint endPoint, string message);
+
+        /// <summary>
+        /// Event occures when message for logging received.
+        /// </summary>
         public event LogHandler LoggableMessageReceived;
 
-
+        /// <summary>
+        /// Inintialize an instance of tcpServer.
+        /// </summary>
         public Server()
         {
             listener = TcpListener.Create(Port);
@@ -31,19 +63,19 @@ namespace Network
             isRunning = false;
         }
 
-        public Server(int port)
-        {
-            listener = TcpListener.Create(port);
-            clients = new List<TcpClient>();
-            isRunning = false;
-        }
-
+        /// <summary>
+        /// Method starts the server.
+        /// </summary>
         public void Start()
         {
             isRunning = true;
             listener?.Start();
             Task.Run(() => AcceptingClientAsync());
         }
+
+        /// <summary>
+        /// Method stops the server.
+        /// </summary>
         public void Stop()
         {
             isRunning = false;
