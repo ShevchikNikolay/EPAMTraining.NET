@@ -25,8 +25,8 @@ namespace Network
         /// </summary>
         public const int BufferSize = 256;
 
-        private readonly TcpClient client;
-        private readonly NetworkStream stream;
+        private  TcpClient client;
+        private  NetworkStream stream;
 
         /// <summary>
         /// Delegate accepting any method 'void(string)'.
@@ -35,7 +35,7 @@ namespace Network
         public delegate void MessageHandler(string message);
 
         /// <summary>
-        /// Event occures when messagereceived from client.
+        /// Event occures when messagereceived from server.
         /// </summary>
         public event MessageHandler MessageReceived;
 
@@ -71,7 +71,6 @@ namespace Network
                 }
                 while (stream.DataAvailable);
                 MessageReceived?.Invoke(stringBuilder.ToString());
-                Console.WriteLine(stringBuilder);
             }
         }
         private async Task SendingDataToTheServer(string message)

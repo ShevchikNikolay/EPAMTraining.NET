@@ -21,8 +21,8 @@ namespace Network
         /// </summary>
         public const int BufferSize = 256;
 
-        private readonly TcpListener listener;
-        private readonly List<TcpClient> clients;
+        private  TcpListener listener;
+        private  List<TcpClient> clients;
         private bool isRunning;
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Network
             {
                 var client = await listener.AcceptTcpClientAsync();
                 clients.Add(client);
-                ConnectonAccepted?.Invoke($"Client {client.Client.RemoteEndPoint.ToString()} has been connected.");
+                ConnectonAccepted?.Invoke($"Client has been connected.");
                 Task.Run(() => ReadingDataFromClient(client));
             }
         }
@@ -113,8 +113,8 @@ namespace Network
 
 
                 string message = $"{stringBuilder}";
-                MessageReseived?.Invoke(clients.Count.ToString());
                 LoggableMessageReceived?.Invoke(ipEndPoint, message);
+                MessageReseived?.Invoke(message);
                 await Task.Run(() => SendingMessageToClients(message));
             }
             
