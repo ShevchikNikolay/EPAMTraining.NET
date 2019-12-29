@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,43 +7,48 @@ using System.Threading.Tasks;
 
 namespace Tree
 {
-    public class Node<T> : IEquatable<Node<T>>, IComparable<Node<T>> where T : IComparable<T>, IEquatable<T>
+    [Serializable]
+    public class Node<T> : IEquatable<Node<T>>, IComparable<Node<T>>, IEnumerable<T> where T : IComparable<T>, IEquatable<T>
     {
 
-        private delegate int SortHandler (T firstItem, T secondItem);
+        private delegate int SortHandler(T firstItem, T secondItem);
         private static SortHandler comparer;
 
+        
         public T Value { get; set; }
-        public Node<T> Parent { get; set; }
-        public Node<T> LeftChild { get; set; }
-        public Node<T> RightChild { get; set; }
+        private Node<T> Parent { get; set; }
+        private Node<T> LeftChild { get; set; }
+        private Node<T> RightChild { get; set; }
 
 
 
+        static Node()
+        {
+            comparer = (x, y) => { return x.CompareTo(y); };
+        }
 
-        private Node(T value)
+        public Node()
+        {
+            Value = default(T);
+            Parent = null;
+            LeftChild = null;
+            RightChild = null;
+        }
+        public Node(T value)
         {
             Value = value;
             Parent = null;
             LeftChild = null;
             RightChild = null;
         }
-        public Node(T value, IComparer<T> comparer)
+
+        public Node(T value, IComparer<T> comparer) : this(value)
         {
-            Value = value;
-            Parent = null;
-            LeftChild = null;
-            RightChild = null;
             Node<T>.comparer = (x, y) => comparer.Compare(x, y);
         }
 
 
-
-        public void Add(T value)
-        {
-            Add(new Node<T>(value));
-        }
-        private void Add(Node<T> node)
+        public void Add(Node<T> node)
         {
             if (this > node)
             {
@@ -53,6 +59,7 @@ namespace Tree
                 else
                 {
                     LeftChild = node;
+                    LeftChild.Parent = this;
                 }
             }
             else
@@ -64,6 +71,7 @@ namespace Tree
                 else
                 {
                     RightChild = node;
+                    RightChild.Parent = this;
                 }
             }
         }
@@ -81,7 +89,7 @@ namespace Tree
                     {
                         return RightChild.Find(node);
                     }
-                    else 
+                    else
                     {
                         return null;
                     }
@@ -97,7 +105,7 @@ namespace Tree
                     }
 
                 case var r when r > 0:
-                    if(LeftChild!= null)
+                    if (LeftChild != null)
                     {
                         return LeftChild.Find(node);
                     }
@@ -111,7 +119,26 @@ namespace Tree
 
         public void Delete(Node<T> node)
         {
-            throw new NotImplementedException();
+            var nodeToDelete = Find(node);
+            var parent = nodeToDelete.Parent;
+            var leftBranch = nodeToDelete.LeftChild;
+            var rightBranch = nodeToDelete.RightChild;
+            if (parent.LeftChild == nodeToDelete)
+            {
+                parent.LeftChild = null;
+            }
+            else
+            {
+                parent.RightChild = null;
+            }
+            if (leftBranch != null)
+            {
+                parent.Add(leftBranch);
+            }
+            if (rightBranch != null)
+            {
+                parent.Add(rightBranch);
+            }
         }
 
         public Node<T> GetMinimum()
@@ -138,31 +165,21 @@ namespace Tree
             }
         }
 
-        public Node<T> GetAverage()
-        {
-            throw new NotImplementedException();
-        }
-
         public void SortWith(IComparer<T> comparer)
         {
-            Node<T>.comparer = (x, y) => comparer.Compare(x,y);
-            Balance();
+            Node<T>.comparer = (x, y) => comparer.Compare(x, y);
         }
 
-        public void Balance()
+        
+        public List<Node<T>> ByAscendingOrder()
         {
-            throw new NotImplementedException();
-        }
-
-        public List<T> ByAscendingOrder()
-        {
-            var result = new List<T>();
+            var result = new List<Node<T>>();
 
             if (LeftChild != null)
             {
                 result.AddRange(LeftChild.ByAscendingOrder());
             }
-            result.Add(Value);
+            result.Add(this);
             if (RightChild != null)
             {
                 result.AddRange(RightChild.ByAscendingOrder());
@@ -170,16 +187,16 @@ namespace Tree
 
             return result;
         }
-        
-        public List<T> ByDescendingOrder()
+
+        public List<Node<T>> ByDescendingOrder()
         {
-            var result = new List<T>();
+            var result = new List<Node<T>>();
 
             if (RightChild != null)
             {
                 result.AddRange(RightChild.ByAscendingOrder());
             }
-            result.Add(Value);
+            result.Add(this);
             if (LeftChild != null)
             {
                 result.AddRange(LeftChild.ByAscendingOrder());
@@ -239,6 +256,78 @@ namespace Tree
         public int CompareTo(Node<T> other)
         {
             return comparer(Value, other.Value);
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return new NodeEnumerator(this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        private class NodeEnumerator : IEnumerator<T>
+        {
+            private readonly Node<T> node;
+            private Node<T> currentNode;
+            private Stack<Node<T>> stack;
+
+            public NodeEnumerator(Node<T> node)
+            {
+                this.node = node;
+                this.node.GetMinimum().Add(new Node<T>());
+                stack = new Stack<Node<T>>();
+            }
+
+            public T Current
+            {
+                get
+                {
+                    if (currentNode.Value == null)
+                    {
+                        throw new InvalidOperationException();
+                    }
+                    return currentNode.Value;
+                }
+            }
+
+            object IEnumerator.Current => throw new NotImplementedException();
+
+            public void Dispose()
+            {
+                
+            }
+
+            public bool MoveNext()
+            {
+                if (currentNode.RightChild != null)
+                {
+                    stack.Push(currentNode);
+                    currentNode = currentNode.RightChild.GetMinimum();
+                    return true;
+                }
+                else
+                {
+                    while (currentNode.Parent == stack.Peek())
+                    {
+                        currentNode = stack.Pop();
+                        
+                    }
+                    if (currentNode.Parent == null)
+                    {
+                        return false;
+                    }
+                    currentNode = currentNode.Parent;
+                    return true;
+                }
+            }
+
+            public void Reset()
+            {
+                currentNode = node.GetMinimum().LeftChild;
+            }
         }
     }
 }

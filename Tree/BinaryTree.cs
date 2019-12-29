@@ -23,15 +23,22 @@ namespace Tree
             NodeCount = 1;
         }
 
+
         public void Add(T value)
         {
-            Root.Add(value);
+            Root.Add(new Node<T>(value));
             NodeCount++;
         }
 
         public Node<T> Find(T value)
         {
             return Find(value);
+        }
+
+        public void Delete(T value)
+        {
+            Root.Delete(new Node<T>(value));
+            NodeCount--;
         }
 
         public Node<T> GetMinimumNode()
@@ -42,6 +49,27 @@ namespace Tree
         public Node<T> GetMaximumNode()
         {
             return Root.GetMaximum();
+        }
+        public void Balance()
+        {
+            List<Node<T>> nodesByAscendingOrder = Root.ByAscendingOrder();
+            Root = null;
+            MiddlePointAdding(0, nodesByAscendingOrder.Count - 1, nodesByAscendingOrder);
+
+        }
+        private void MiddlePointAdding(int leftIndex, int rightIndex, List<Node<T>> list)
+        {
+            var middlePoint = (int)Math.Ceiling((leftIndex + rightIndex) / 2.0);
+            if (Root == null)
+            {
+                Root = list[middlePoint];
+            }
+            else
+            {
+                Root.Add(list[(int)middlePoint]);
+            }
+            MiddlePointAdding(leftIndex, middlePoint - 1, list);
+            MiddlePointAdding(middlePoint + 1, rightIndex, list);
         }
     }
 }
