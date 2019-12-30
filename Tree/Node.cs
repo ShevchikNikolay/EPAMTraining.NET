@@ -6,7 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Tree
-{
+{/// <summary>
+/// Describes node of tree.
+/// </summary>
+/// <typeparam name="T">Universal type</typeparam>
     [Serializable]
     public class Node<T> : IEquatable<Node<T>>, IComparable<Node<T>>, IEnumerable<T> where T : IComparable<T>, IEquatable<T>
     {
@@ -14,11 +17,25 @@ namespace Tree
         private delegate int SortHandler(T firstItem, T secondItem);
         private static SortHandler comparer;
 
-        
+        /// <summary>
+        /// Value of universal type.
+        /// </summary>
         public T Value { get; set; }
-        private Node<T> Parent { get; set; }
-        private Node<T> LeftChild { get; set; }
-        private Node<T> RightChild { get; set; }
+
+        /// <summary>
+        /// Reference to parent node.
+        /// </summary>
+        public Node<T> Parent { get; set; }
+
+        /// <summary>
+        /// Reference to left child node.
+        /// </summary>
+        public Node<T> LeftChild { get; set; }
+
+        /// <summary>
+        /// Reference to right child node.
+        /// </summary>
+        public Node<T> RightChild { get; set; }
 
 
 
@@ -27,6 +44,9 @@ namespace Tree
             comparer = (x, y) => { return x.CompareTo(y); };
         }
 
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public Node()
         {
             Value = default(T);
@@ -34,6 +54,11 @@ namespace Tree
             LeftChild = null;
             RightChild = null;
         }
+
+        /// <summary>
+        /// Initialize new instance of node with universal type value.
+        /// </summary>
+        /// <param name="value">universal type value</param>
         public Node(T value)
         {
             Value = value;
@@ -42,12 +67,20 @@ namespace Tree
             RightChild = null;
         }
 
+        /// <summary>
+        /// Initialize new instance of node with universal type value and IComparer object
+        /// </summary>
+        /// <param name="value">universal type value</param>
+        /// <param name="comparer">IComparer object</param>
         public Node(T value, IComparer<T> comparer) : this(value)
         {
             Node<T>.comparer = (x, y) => comparer.Compare(x, y);
         }
 
-
+        /// <summary>
+        /// Method to add a node to the tree
+        /// </summary>
+        /// <param name="node"></param>
         public void Add(Node<T> node)
         {
             if (this > node)
@@ -76,10 +109,21 @@ namespace Tree
             }
         }
 
+        /// <summary>
+        /// method to find node by value.
+        /// </summary>
+        /// <param name="value">universal type value</param>
+        /// <returns></returns>
         public Node<T> Find(T value)
         {
             return Find(new Node<T>(value));
         }
+
+        /// <summary>
+        /// Method to find the node in the tree.
+        /// </summary>
+        /// <param name="node">The node.</param>
+        /// <returns></returns>
         public Node<T> Find(Node<T> node)
         {
             switch (CompareTo(node))
@@ -117,6 +161,10 @@ namespace Tree
             return null;
         }
 
+        /// <summary>
+        /// Method to delete node from tree.
+        /// </summary>
+        /// <param name="node">The node.</param>
         public void Delete(Node<T> node)
         {
             var nodeToDelete = Find(node);
@@ -141,6 +189,10 @@ namespace Tree
             }
         }
 
+        /// <summary>
+        /// Method to find node with minimum value.
+        /// </summary>
+        /// <returns></returns>
         public Node<T> GetMinimum()
         {
             if (LeftChild != null)
@@ -153,6 +205,10 @@ namespace Tree
             }
         }
 
+        /// <summary>
+        /// Method to find node with maximum value.
+        /// </summary>
+        /// <returns></returns>
         public Node<T> GetMaximum()
         {
             if (RightChild != null)
@@ -165,12 +221,19 @@ namespace Tree
             }
         }
 
+        /// <summary>
+        /// Method to set comparer to sort value objects.
+        /// </summary>
+        /// <param name="comparer"></param>
         public void SortWith(IComparer<T> comparer)
         {
             Node<T>.comparer = (x, y) => comparer.Compare(x, y);
         }
 
-        
+        /// <summary>
+        /// Method to get list of nodes of the tree sorted by ascending order.
+        /// </summary>
+        /// <returns></returns>
         public List<Node<T>> ByAscendingOrder()
         {
             var result = new List<Node<T>>();
@@ -188,6 +251,10 @@ namespace Tree
             return result;
         }
 
+        /// <summary>
+        /// Method to get list of nodes of the tree sorted by descending order. 
+        /// </summary>
+        /// <returns></returns>
         public List<Node<T>> ByDescendingOrder()
         {
             var result = new List<Node<T>>();
@@ -206,7 +273,12 @@ namespace Tree
         }
 
 
-
+        /// <summary>
+        /// Override operator "less than".
+        /// </summary>
+        /// <param name="left">Left operand</param>
+        /// <param name="right">Right operand</param>
+        /// <returns></returns>
         public static bool operator >(Node<T> left, Node<T> right)
         {
             if (left.Value.CompareTo(right.Value) > 0)
@@ -218,6 +290,13 @@ namespace Tree
                 return false;
             }
         }
+
+        /// <summary>
+        /// Override operator "greater than".
+        /// </summary>
+        /// <param name="left">Left operand</param>
+        /// <param name="right">Right operand</param>
+        /// <returns></returns>
         public static bool operator <(Node<T> left, Node<T> right)
         {
             if (left.Value.CompareTo(right.Value) > 0)
@@ -230,6 +309,11 @@ namespace Tree
             }
         }
 
+        /// <summary>
+        /// Override method Object.Equals()
+        /// </summary>
+        /// <param name="obj">Object to compare</param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj is Node<T> item && Value.CompareTo(item.Value) == 0)
@@ -242,22 +326,40 @@ namespace Tree
             }
         }
 
+        /// <summary>
+        /// Implementation of IEquatable interface
+        /// </summary>
+        /// <param name="other">Node to compare</param>
+        /// <returns></returns>
         public bool Equals(Node<T> other)
         {
             return other != null &&
                    EqualityComparer<T>.Default.Equals(Value, other.Value);
         }
 
+        /// <summary>
+        /// Override Object.GetHashCode()
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return -1937169414 + EqualityComparer<T>.Default.GetHashCode(Value);
         }
 
+        /// <summary>
+        /// Implementation of IComparable interface.
+        /// </summary>
+        /// <param name="other"> Node to compare</param>
+        /// <returns></returns>
         public int CompareTo(Node<T> other)
         {
             return comparer(Value, other.Value);
         }
 
+        /// <summary>
+        /// Implementation of IEnumerable interface
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator<T> GetEnumerator()
         {
             return new NodeEnumerator(this);
