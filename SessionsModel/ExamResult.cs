@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataModel
+﻿namespace DataModel
 {
-    public class ExamResult:AbstractResult
+    public class ExamResult : AbstractResult
     {
         public int Mark { get; set; }
     }

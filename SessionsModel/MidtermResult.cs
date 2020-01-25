@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataModel
+﻿namespace DataModel
 {
-    public class MidtermResult
+    public class MidtermResult : AbstractResult
     {
         public bool IsPassed { get; set; }
     }
