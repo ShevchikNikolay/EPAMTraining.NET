@@ -11,23 +11,37 @@ namespace DataAccess
         where T : new()
     {
         private static string connectionString;
+        private static DAO<T> instance;
 
-        public DAO(string connectionString)
+        private DAO(string connectionString)
         {
             DAO<T>.connectionString = connectionString;
         }
 
-
-        public void Create(T obj)
+        public static DAO<T> GetInstance (string connectionString)
         {
+            return instance ?? (instance = new DAO<T>(connectionString));
+        }
+
+        public T Create(T obj)
+        {
+            int result;
             var type = obj.GetType();
             var tableName = Plural.Convert(type.Name);
             var properties = type.GetProperties();
             var columnNames = new StringBuilder();
             var parameterNames = new StringBuilder();
             var command = new SqlCommand();
+            var pid = new SqlParameter
+            {
+                ParameterName = "INSERTED_ID",
+                Direction = ParameterDirection.Output
+            };
+            command.Parameters.Add(pid);
+
             foreach (var item in properties)
             {
+                if (item.Name == "Id") continue; 
                 columnNames.Append($"{item.Name},");
                 parameterNames.Append($"@{item.Name},");
                 command.Parameters.Add(new SqlParameter($"@{item.Name}", item));
@@ -42,8 +56,10 @@ namespace DataAccess
                 command.Connection = connection;
                 connection.Open();
                 command.ExecuteNonQuery();
-            }
 
+                obj.GetType().GetProperty("Id").SetValue(this, Int32.Parse(pid.Value.ToString()));
+            }
+            return obj;
         }
 
         public void Update(T obj, List<string> propertiesToUpdate)
@@ -89,7 +105,7 @@ namespace DataAccess
 
         }
 
-        public static T GetSingle(int id)
+        public T GetSingle(int id)
         {
             var type = typeof(T);
             var tableName = Plural.Convert(type.Name);
@@ -117,7 +133,7 @@ namespace DataAccess
 
         }
 
-        public static List<T> GetAll()
+        public List<T> GetAll()
         {
             var type = typeof(T);
             var tableName = Plural.Convert(type.Name);

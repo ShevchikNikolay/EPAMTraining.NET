@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ORM
+{
+    public class AbstractDBContext
+    {
+        private string connectionString;
+
+        public AbstractDBContext(string str)
+        {
+            connectionString = str;
+        }
+    }
+}
