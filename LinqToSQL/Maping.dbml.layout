@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Maping">
+  <DataContextMoniker Name="/MapingDataContext" />
+  <nestedChildShapes>
+    <classShape Id="f0c21bae-cd9f-4535-b129-67bc199e4a8b" absoluteBounds="3, 5.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/MapingDataContext/Examner" />
+      <nestedChildShapes>
+        <elementListCompartment Id="836236ba-f377-4e5e-a7f7-305efca58ce3" absoluteBounds="3.015, 6.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="42e3b5a6-be84-44d3-b120-caed32ed6acb" absoluteBounds="3, 0.875, 2, 1.1939925130208338">
+      <DataClassMoniker Name="/MapingDataContext/Subject" />
+      <nestedChildShapes>
+        <elementListCompartment Id="af109dd1-cdd7-4ead-b4be-3c9e76b04b90" absoluteBounds="3.015, 1.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ad62b6be-0f62-4ec7-a77d-cc615738ee77" absoluteBounds="5.75, 0.5, 2, 1.7708968098958333">
+      <DataClassMoniker Name="/MapingDataContext/Exam" />
+      <nestedChildShapes>
+        <elementListCompartment Id="146facf8-c851-4f8a-ad73-5d50ed19987f" absoluteBounds="5.7650000000000006, 0.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1684374c-e824-4575-b1c9-1e9efc9a138d" absoluteBounds="8.25, 5.25, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/MapingDataContext/Group" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f7cc3e1e-65ad-4b40-810d-2140e192fe79" absoluteBounds="8.265, 5.7100000000000009, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e98aa049-7714-4c06-b5cb-0062fea14479" absoluteBounds="8.125, 0.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/MapingDataContext/Result" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cf1c1e91-d01e-42fc-8701-c75830a75528" absoluteBounds="8.14, 0.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="16ecbd79-76f9-47a6-9337-360f03d365dd" absoluteBounds="3, 3.5, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/MapingDataContext/Session" />
+      <nestedChildShapes>
+        <elementListCompartment Id="31ab032c-091f-41b3-ae0e-775fc0c9e91a" absoluteBounds="3.015, 3.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5434d385-580b-4112-94b0-28b8022abcde" absoluteBounds="8.25, 2.625, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/MapingDataContext/Student" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c594c3c6-b286-4df0-9dea-83b1d7a92181" absoluteBounds="8.265, 3.0850000000000009, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5 : 6.53929768880208); (6.75 : 6.53929768880208); (6.75 : 2.27089680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MapingDataContext/Examner/Examner_Exam" />
+      <nodes>
+        <classShapeMoniker Id="f0c21bae-cd9f-4535-b129-67bc199e4a8b" />
+        <classShapeMoniker Id="ad62b6be-0f62-4ec7-a77d-cc615738ee77" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5 : 1.47199625651042); (5.75 : 1.47199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MapingDataContext/Subject/Subject_Exam" />
+      <nodes>
+        <classShapeMoniker Id="42e3b5a6-be84-44d3-b120-caed32ed6acb" />
+        <classShapeMoniker Id="ad62b6be-0f62-4ec7-a77d-cc615738ee77" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5 : 4.19314697265625); (6.2187475 : 4.19314697265625); (6.2187475 : 2.27089680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MapingDataContext/Session/Session_Exam" />
+      <nodes>
+        <classShapeMoniker Id="16ecbd79-76f9-47a6-9337-360f03d365dd" />
+        <classShapeMoniker Id="ad62b6be-0f62-4ec7-a77d-cc615738ee77" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.75 : 1.28929768880208); (8.125 : 1.28929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MapingDataContext/Exam/Exam_Result" />
+      <nodes>
+        <classShapeMoniker Id="ad62b6be-0f62-4ec7-a77d-cc615738ee77" />
+        <classShapeMoniker Id="e98aa049-7714-4c06-b5cb-0062fea14479" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(9.1875 : 2.625); (9.1875 : 2.07859537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MapingDataContext/Student/Student_Result" />
+      <nodes>
+        <classShapeMoniker Id="5434d385-580b-4112-94b0-28b8022abcde" />
+        <classShapeMoniker Id="e98aa049-7714-4c06-b5cb-0062fea14479" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(9.25 : 5.25); (9.25 : 4.78049967447917)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MapingDataContext/Group/Group_Student" />
+      <nodes>
+        <classShapeMoniker Id="1684374c-e824-4575-b1c9-1e9efc9a138d" />
+        <classShapeMoniker Id="5434d385-580b-4112-94b0-28b8022abcde" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SesRes" Class="MapingDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=POWERWIN\SQLEXPRESS;Initial Catalog=SesRes;Integrated Security=True" SettingsObjectName="LinqToSQL.Properties.Settings" SettingsPropertyName="SesResConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Examners" Member="Examner">
+    <Type Name="Examner">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="firstName" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="lastName" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="patronymic" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Association Name="Examner_Exam" Member="Exam" ThisKey="id" OtherKey="examinerId" Type="Exam" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Subjects" Member="Subject">
+    <Type Name="Subject">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="Char(40)" CanBeNull="true" />
+      <Association Name="Subject_Exam" Member="Exam" ThisKey="id" OtherKey="subjectId" Type="Exam" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Exams" Member="Exam">
+    <Type Name="Exam">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="subjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="sessionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="examinerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Exam_Result" Member="Result" ThisKey="id" OtherKey="examId" Type="Result" />
+      <Association Name="Examner_Exam" Member="Examner" ThisKey="examinerId" OtherKey="id" Type="Examner" IsForeignKey="true" />
+      <Association Name="Subject_Exam" Member="Subject" ThisKey="subjectId" OtherKey="id" Type="Subject" IsForeignKey="true" />
+      <Association Name="Session_Exam" Member="Session" ThisKey="sessionId" OtherKey="id" Type="Session" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Groups" Member="Group">
+    <Type Name="Group">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="specialty" Type="System.String" DbType="NChar(40) NOT NULL" CanBeNull="false" />
+      <Association Name="Group_Student" Member="Student" ThisKey="id" OtherKey="groupId" Type="Student" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Results" Member="Result">
+    <Type Name="Result">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="studentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="mark" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="examId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Exam_Result" Member="Exam" ThisKey="examId" OtherKey="id" Type="Exam" IsForeignKey="true" />
+      <Association Name="Student_Result" Member="Student" ThisKey="studentId" OtherKey="id" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sessions" Member="Session">
+    <Type Name="Session">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="year" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Session_Exam" Member="Exam" ThisKey="id" OtherKey="sessionId" Type="Exam" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Students" Member="Student">
+    <Type Name="Student">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="firstName" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="lastName" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="patronymic" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Column Name="gender" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="birthDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="groupId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Student_Result" Member="Result" ThisKey="id" OtherKey="studentId" Type="Result" />
+      <Association Name="Group_Student" Member="Group" ThisKey="groupId" OtherKey="id" Type="Group" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
