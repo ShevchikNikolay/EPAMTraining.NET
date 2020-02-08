@@ -25,7 +25,6 @@ namespace DataAccess
 
         public T Create(T obj)
         {
-            int result;
             var type = obj.GetType();
             var tableName = Plural.Convert(type.Name);
             var properties = type.GetProperties();
