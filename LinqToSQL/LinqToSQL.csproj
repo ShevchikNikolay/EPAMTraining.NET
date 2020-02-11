@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DynamicsReport.cs" />
     <Compile Include="Maping.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

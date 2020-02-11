@@ -77,5 +77,36 @@ namespace LinqToSQL
                              };
             }
         }
+
+        public void GetStudentsToExpulsion (int sessionId)
+        {
+            using (var db = new MapingDataContext())
+            {
+
+                var report = from Result in db.Result
+                             where
+                               Result.Exam.Session.id == sessionId
+                             group new { Result.Student.Group, Result.Student, Result } by new
+                             {
+                                 Result.Student.Group.name,
+                                 Result.Student.firstName,
+                                 Result.Student.lastName,
+                                 Result.Student.patronymic
+                             } into g
+                             where g.Min(p => p.Result.mark) < 4
+                             orderby
+                               g.Key.name,
+                               g.Key.firstName,
+                               g.Key.lastName,
+                               g.Key.patronymic
+                             select new
+                             {
+                                 g.Key.name,
+                                 g.Key.firstName,
+                                 g.Key.lastName,
+                                 g.Key.patronymic
+                             };
+            }
+        }
     }
 }
