@@ -141,7 +141,7 @@ namespace LinqToSQL
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Examners")]
-	public partial class Examner : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Examner : INotifyPropertyChanging, INotifyPropertyChanged, IEntity
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -303,7 +303,7 @@ namespace LinqToSQL
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Subjects")]
-	public partial class Subject : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Subject : INotifyPropertyChanging, INotifyPropertyChanged, IEntity
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -417,7 +417,7 @@ namespace LinqToSQL
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Exams")]
-	public partial class Exam : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Exam : INotifyPropertyChanging, INotifyPropertyChanged, IEntity
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -726,7 +726,7 @@ namespace LinqToSQL
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Groups")]
-	public partial class Group : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Group : INotifyPropertyChanging, INotifyPropertyChanged, IEntity
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -864,7 +864,7 @@ namespace LinqToSQL
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Results")]
-	public partial class Result : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Result : INotifyPropertyChanging, INotifyPropertyChanged, IEntity
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1080,7 +1080,7 @@ namespace LinqToSQL
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Sessions")]
-	public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged, IEntity
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1218,7 +1218,7 @@ namespace LinqToSQL
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Students")]
-	public partial class Student : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Student : INotifyPropertyChanging, INotifyPropertyChanged, IEntity
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
