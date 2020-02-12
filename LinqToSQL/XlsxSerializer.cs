@@ -4,8 +4,17 @@ using System.Data;
 
 namespace LinqToSQL
 {
+    /// <summary>
+    /// Generic class, that provide serialization in xlsx format.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class XlsxSerializer<T> where T :IList<T>
     {
+        /// <summary>
+        /// Method to serialize any list to xls(xlsx) format.
+        /// </summary>
+        /// <param name="report">Argument represents any List.</param>
+        /// <param name="outputFileName">Argument represents name of output file.</param>
         public void Serialize(T report, string outputFileName)
         {
             using (var workbook = new XLWorkbook())

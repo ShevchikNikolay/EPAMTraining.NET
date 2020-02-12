@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace LinqToSQL
 {
-    public class CRUDHelper<T> where T: class ,IEntity
+    /// <summary>
+    /// Static class. Provides some methods to reduce code on CRUD operations. 
+    /// </summary>
+    /// <typeparam name="T">Universal type.</typeparam>
+    public static class CRUDHelper<T> where T : class, IEntity
     {
+        /// <summary>
+        /// Method to create an entity of T type in database.
+        /// </summary>
+        /// <param name="entity">Argument represents an entity of universal type.</param>
         public static void Create(T entity)
         {
             using (var db = new MapingDataContext())
@@ -18,6 +22,11 @@ namespace LinqToSQL
             }
         }
 
+        /// <summary>
+        /// Method to find an entity by its identity code.
+        /// </summary>
+        /// <param name="id">Argument of integer type, that represent identity code.</param>
+        /// <returns></returns>
         public static T Find(int id)
         {
             using (var db = new MapingDataContext())
@@ -30,6 +39,10 @@ namespace LinqToSQL
             }
         }
 
+        /// <summary>
+        /// Method to delete an entity from database.
+        /// </summary>
+        /// <param name="entity">Entity to deleting.</param>
         public static void Delete(T entity)
         {
             using (var db = new MapingDataContext())

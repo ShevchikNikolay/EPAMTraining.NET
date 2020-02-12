@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\LinqToSQL.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -77,7 +78,7 @@
     <Compile Include="SpecialtySessionSummaryRecord.cs" />
     <Compile Include="SpecialtySessionSummaryReport.cs" />
     <Compile Include="StudentsToExpulsionReport.cs" />
-    <Compile Include="StudentToExpulsionRecord.cs" />
+    <Compile Include="StudentsToExpulsionRecord.cs" />
     <Compile Include="XlsxSerializer.cs" />
   </ItemGroup>
   <ItemGroup>

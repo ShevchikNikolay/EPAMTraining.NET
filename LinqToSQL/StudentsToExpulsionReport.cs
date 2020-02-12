@@ -4,8 +4,17 @@ using System.Linq;
 
 namespace LinqToSQL
 {
-    class StudentsToExpulsionReport : List<StudentToExpulsionRecord>
+    /// <summary>
+    /// Class represents set of records about students in diferent groups,
+    /// whos minimal mark in the session less than 4.
+    /// </summary>
+    public class StudentsToExpulsionReport : List<StudentsToExpulsionRecord>
     {
+        /// <summary>
+        /// Constructor creates an instance of report.
+        /// </summary>
+        /// <param name="db">Argument represents a database context.</param>
+        /// <param name="sessionId">Argument represents an identity code.</param>
         public StudentsToExpulsionReport(MapingDataContext db, int sessionId)
         {
             var query =
@@ -33,7 +42,7 @@ namespace LinqToSQL
                     Patronymic = g.Key.patronymic
                 };
             foreach (var r in query)
-                Add(new StudentToExpulsionRecord(
+                Add(new StudentsToExpulsionRecord(
                     r.GroupName, r.LastName, r.FirstName, r.Patronymic));
         }
     }

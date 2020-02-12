@@ -5,8 +5,16 @@ using System.Linq;
 
 namespace LinqToSQL
 {
+    /// <summary>
+    /// Class represents set of records, that describes dynamics of avarage mark in diferent aducational
+    /// disciplines. 
+    /// </summary>
     public class DynamicsReport : List<DynamicsRecord>
     {
+        /// <summary>
+        /// Creates an instance of report.
+        /// </summary>
+        /// <param name="db">An instance of database context.</param>
         public DynamicsReport(MapingDataContext db)
         {
             var query =

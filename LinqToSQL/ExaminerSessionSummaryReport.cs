@@ -4,8 +4,16 @@ using System.Linq;
 
 namespace LinqToSQL
 {
+    /// <summary>
+    /// Class represents set of records, that descrbes some statistics on average marks.
+    /// </summary>
     public class ExaminerSessionSummaryReport : List<ExaminerSessionSummaryRecord>
     {
+        /// <summary>
+        /// Constructor creates an instance of report.
+        /// </summary>
+        /// <param name="db">Argument represents a database context.</param>
+        /// <param name="sessionId">Argument represents an identity code.</param>
         public ExaminerSessionSummaryReport(MapingDataContext db, int sessionId)
         {
             var query =
