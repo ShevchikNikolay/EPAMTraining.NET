@@ -1,37 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LinqToSQL
 {
-    public class DynamicsReport
+    public class DynamicsReport : List<DynamicsRecord>
     {
-        public DynamicsReport(
-            DateTime year, double? maths, double? visualProgramming,
-            double? oOP, double? dBEngeneering, double? modeling,
-            double? cryptology)
-        {
-            Year = year;
-            Maths = maths;
-            VisualProgramming = visualProgramming;
-            OOP = oOP;
-            DBEngeneering = dBEngeneering;
-            Modeling = modeling;
-            Cryptology = cryptology;
-        }
-        public DateTime Year { get; }
-        public double? Maths { get; }
-        public double? VisualProgramming { get; }
-        public double? OOP { get; }
-        public double? DBEngeneering { get; }
-        public double? Modeling { get; }
-        public double? Cryptology { get; }
-    }
-    public class DynamicsReportList : List<DynamicsReport>
-    {
-        public DynamicsReportList(MapingDataContext db)
+        public DynamicsReport(MapingDataContext db)
         {
             var query =
                 from Session in db.Session
@@ -136,7 +111,7 @@ namespace LinqToSQL
                     Cryptology = Averege_6.average
                 };
             foreach (var r in query)
-                Add(new DynamicsReport(
+                Add(new DynamicsRecord(
                     r.year, r.Maths, r.VisualProgramming, r.OOP, r.DBEngeneering,
                     r.Modeling, r.Cryptology));
         }

@@ -42,7 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DynamicsRecord.cs" />
     <Compile Include="DynamicsReport.cs" />
+    <Compile Include="ExaminerSessionSummaryRecord.cs" />
+    <Compile Include="ExaminerSessionSummaryReport.cs" />
+    <Compile Include="GroupSessionSummaryRecord.cs" />
+    <Compile Include="GroupSessionSummaryReport.cs" />
     <Compile Include="Maping.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -54,7 +59,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="SessionReport.cs" />
+    <Compile Include="SpecialtySessionSummaryRecord.cs" />
+    <Compile Include="SpecialtySessionSummaryReport.cs" />
+    <Compile Include="StudentsToExpulsionReport.cs" />
+    <Compile Include="StudentToExpulsionRecord.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
