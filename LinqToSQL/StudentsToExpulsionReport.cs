@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace LinqToSQL
@@ -36,5 +37,4 @@ namespace LinqToSQL
                     r.GroupName, r.LastName, r.FirstName, r.Patronymic));
         }
     }
-
 }

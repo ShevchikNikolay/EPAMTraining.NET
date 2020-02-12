@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace LinqToSQL
@@ -28,5 +29,6 @@ namespace LinqToSQL
                 Add(new GroupSessionSummaryRecord(
                     r.name, r.Averege, r.Minimal, r.Maximal));
         }
+
     }
 }

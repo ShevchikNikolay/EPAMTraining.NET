@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace LinqToSQL
@@ -32,5 +33,6 @@ namespace LinqToSQL
                 Add(new ExaminerSessionSummaryRecord(
                     r.LastName, r.FirstName, r.Patronymic, r.Average));
         }
+
     }
 }
