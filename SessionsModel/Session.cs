@@ -2,7 +2,7 @@
 
 namespace DataModel
 {
-    public class Session
+    public class Session : IEntity
     {
         public int Id { get; set; }
         public DateTime Year { get; set; }
