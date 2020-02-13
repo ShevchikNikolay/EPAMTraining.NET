@@ -8,11 +8,8 @@ namespace ORM
 {
     public class AbstractDBContext
     {
-        private string connectionString;
+        public const string connectionString = "Data Source=POWERWIN\\SQLEXPRESS;Initial Catalog=SesionResults;Integrated Security=True"
+;
 
-        public AbstractDBContext(string str)
-        {
-            connectionString = str;
-        }
     }
 }

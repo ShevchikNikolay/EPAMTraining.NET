@@ -4,23 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccess;
+using DataModel;
 
 namespace ORM
 {
-    public class DbSet<T> where T : new()
+    public class DbSet<T> : List<T> 
+        where T : IEntity, new () 
     {
-        private List<T> local;
-        private DAO<T> dao;
+        private readonly DAO<T> dao;
 
         public DbSet(string connectionString)
         {
-            local = new List<T>();
             dao = DAO<T>.GetInstance(connectionString);
+            AddRange(dao.GetAll());
         }
 
-        public void Add(T entity)
+        public new void Add(T entity)
         {
-            local.Add(dao.Create(entity));
+            base.Add(dao.Create(entity));
         }
 
         public void AddRange(List<T> entities)
@@ -34,7 +35,7 @@ namespace ORM
         public T Find(int id)
         {
             var result = dao.GetSingle(id);
-            if (!local.Contains(result)) local.Add(result);
+            if (!Contains(result)) Add(result);
             return result;
         }
 

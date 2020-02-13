@@ -42,13 +42,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractDBContext.cs" />
+    <Compile Include="DBContext.cs" />
     <Compile Include="DbSet.cs" />
+    <Compile Include="GroupSessionSummaryReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StudentsToExpulsionReport.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{e5587ee5-09c4-4b0e-ba56-5cfb3e174b7f}</Project>
       <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SessionsModel\DataModel.csproj">
+      <Project>{67dea15d-309f-4211-8ce8-ee2d258a3820}</Project>
+      <Name>DataModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
