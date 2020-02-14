@@ -8,7 +8,7 @@ namespace Serializer
     /// Generic class, that provide serialization in xlsx format.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class XlsxSerializer<T> where T :IList<T>
+    public class XlsxSerializer<T> where T : IList<T>
     {
         /// <summary>
         /// Method to serialize any list to xls(xlsx) format.

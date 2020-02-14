@@ -20,18 +20,22 @@
             Minimal = minimal;
             Maximal = maximal;
         }
+
         /// <summary>
         /// Property represents name of group.
         /// </summary>
         public string Name { get; }
+
         /// <summary>
         /// Property represents average mark in group.
         /// </summary>
         public double? Averege { get; }
+
         /// <summary>
         /// Property represents minimal mark in group.
         /// </summary>
         public int? Minimal { get; }
+
         /// <summary>
         /// Property represents maximal mark in group.
         /// </summary>

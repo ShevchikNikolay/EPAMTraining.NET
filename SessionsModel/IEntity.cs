@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataModel
+﻿namespace DataModel
 {
+    /// <summary>
+    /// Interface that indicate entity.
+    /// </summary>
     public interface IEntity
     {
+        /// <summary>
+        /// Required property, that represents identity code of entity.
+        /// </summary>
         int Id { get; set; }
     }
 }

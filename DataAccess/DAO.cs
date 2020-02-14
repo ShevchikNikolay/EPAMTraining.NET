@@ -7,6 +7,10 @@ using Grammar;
 
 namespace DataAccess
 {
+    /// <summary>
+    /// Generic class provides access to database.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class DAO<T>
         where T : new()
     {
@@ -18,11 +22,21 @@ namespace DataAccess
             DAO<T>.connectionString = connectionString;
         }
 
-        public static DAO<T> GetInstance (string connectionString)
+        /// <summary>
+        /// Singletone pattern realization.
+        /// </summary>
+        /// <param name="connectionString">String argument, that represents connection string.</param>
+        /// <returns>Instance of data access object.</returns>
+        public static DAO<T> GetInstance(string connectionString)
         {
             return instance ?? (instance = new DAO<T>(connectionString));
         }
 
+        /// <summary>
+        /// Method of insertion any entity into database.
+        /// </summary>
+        /// <param name="obj">Argument represents entity to insertion.</param>
+        /// <returns>Inserted entity with identity code.</returns>
         public T Create(T obj)
         {
             var type = obj.GetType();
@@ -40,7 +54,7 @@ namespace DataAccess
 
             foreach (var item in properties)
             {
-                if (item.Name == "Id") continue; 
+                if (item.Name == "Id") continue;
                 columnNames.Append($"{item.Name},");
                 parameterNames.Append($"@{item.Name},");
                 command.Parameters.Add(new SqlParameter($"@{item.Name}", item));
@@ -61,8 +75,22 @@ namespace DataAccess
             return obj;
         }
 
+        /// <summary>
+        /// Methode for updating entities in database.
+        /// </summary>
+        /// <param name="obj">Entity to update.</param>
+        /// <param name="propertiesToUpdate">Argument represents a list of properties to particular 
+        /// updating entity.</param>
         public void Update(T obj, List<string> propertiesToUpdate)
         {
+            if (propertiesToUpdate.Count == 0)
+            {
+                foreach (var item in obj.GetType().GetProperties())
+                {
+                    propertiesToUpdate.Add(item.Name);
+                }
+
+            }
             var type = obj.GetType();
             var tableName = Plural.Convert(type.Name);
             var id = type.GetProperty("Id");
@@ -87,6 +115,10 @@ namespace DataAccess
             }
         }
 
+        /// <summary>
+        /// Methode for deleting an entity from the database.
+        /// </summary>
+        /// <param name="id">Identity code of the entity to delete.</param>
         public void Delete(int id)
         {
             var type = typeof(T);
@@ -101,9 +133,13 @@ namespace DataAccess
                 connection.Open();
                 command.ExecuteNonQuery();
             }
-
         }
 
+        /// <summary>
+        /// Methode for getting single entity from the database.
+        /// </summary>
+        /// <param name="id">Identity code.</param>
+        /// <returns>Entity with given id.</returns>
         public T GetSingle(int id)
         {
             var type = typeof(T);
@@ -129,9 +165,12 @@ namespace DataAccess
                     throw new ArgumentException($"Id = {id} is not found");
                 }
             }
-
         }
 
+        /// <summary>
+        /// Method for getting all entities from the table.
+        /// </summary>
+        /// <returns>List of entities.</returns>
         public List<T> GetAll()
         {
             var type = typeof(T);

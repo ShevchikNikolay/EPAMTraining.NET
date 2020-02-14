@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using DataModel;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using DataModel;
-using DataAccess;
 
 namespace ORM
 {
@@ -15,7 +14,6 @@ namespace ORM
         /// <summary>
         /// Constructor creates an instance of report.
         /// </summary>
-        /// <param name="db">Argument represents a database context.</param>
         /// <param name="sessionId">Argument represents an identity code.</param>
         public StudentsToExpulsionReport(int sessionId)
         {

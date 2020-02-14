@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ORM
+﻿namespace ORM
 {
+    /// <summary>
+    /// Class describes an abstract database context.
+    /// </summary>
     public class AbstractDBContext
     {
-        public const string connectionString = "Data Source=POWERWIN\\SQLEXPRESS;Initial Catalog=SesionResults;Integrated Security=True"
-;
-
+        /// <summary>
+        /// Represents connection string.
+        /// </summary>
+        public const string connectionString = 
+            "Data Source=POWERWIN\\SQLEXPRESS;Initial Catalog=SesionResults;Integrated Security=True";
     }
 }

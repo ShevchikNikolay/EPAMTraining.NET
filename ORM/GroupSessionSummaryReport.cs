@@ -13,7 +13,6 @@ namespace ORM
         /// <summary>
         /// Constructor creates an instance of report.
         /// </summary>
-        /// <param name="db">Argument represens a database context.</param>
         /// <param name="sessionId">Argument represents an identity code.</param>
         public GroupSessionSummaryReport(int sessionId)
         {
@@ -47,6 +46,5 @@ namespace ORM
                         item.Name, item.Averege, item.Minimal, item.Maximal));
             }
         }
-
     }
 }

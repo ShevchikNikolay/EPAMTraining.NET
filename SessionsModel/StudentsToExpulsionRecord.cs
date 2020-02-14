@@ -21,18 +21,22 @@
             FirstName = firstName;
             Patronymic = patronymic;
         }
+
         /// <summary>
         /// Property represents name of group.
         /// </summary>
         public string GroupName { get; }
+
         /// <summary>
         /// Property represents last name of student.
         /// </summary>
         public string LastName { get; }
+
         /// <summary>
         /// Property represents first name of student.
         /// </summary>
         public string FirstName { get; }
+
         /// <summary>
         /// Property represents patronymic of student.
         /// </summary>
