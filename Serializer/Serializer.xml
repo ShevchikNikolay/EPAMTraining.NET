@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Serializer</name>
+    </assembly>
+    <members>
+        <member name="T:Serializer.XlsxSerializer`1">
+            <summary>
+            Generic class, that provide serialization in xlsx format.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Serializer.XlsxSerializer`1.Serialize(`0,System.String)">
+            <summary>
+            Method to serialize any list to xls(xlsx) format.
+            </summary>
+            <param name="report">Argument represents any List.</param>
+            <param name="outputFileName">Argument represents name of output file.</param>
+        </member>
+    </members>
+</doc>

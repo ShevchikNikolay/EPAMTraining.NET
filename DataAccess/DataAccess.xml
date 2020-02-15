@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DataAccess</name>
+    </assembly>
+    <members>
+        <member name="T:DataAccess.DAO`1">
+            <summary>
+            Generic class provides access to database.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:DataAccess.DAO`1.GetInstance(System.String)">
+            <summary>
+            Singletone pattern realization.
+            </summary>
+            <param name="connectionString">String argument, that represents connection string.</param>
+            <returns>Instance of data access object.</returns>
+        </member>
+        <member name="M:DataAccess.DAO`1.Create(`0)">
+            <summary>
+            Method of insertion any entity into database.
+            </summary>
+            <param name="obj">Argument represents entity to insertion.</param>
+            <returns>Inserted entity with identity code.</returns>
+        </member>
+        <member name="M:DataAccess.DAO`1.Update(`0,System.Collections.Generic.List{System.String})">
+            <summary>
+            Methode for updating entities in database.
+            </summary>
+            <param name="obj">Entity to update.</param>
+            <param name="propertiesToUpdate">Argument represents a list of properties to particular 
+            updating entity.</param>
+        </member>
+        <member name="M:DataAccess.DAO`1.Delete(System.Int32)">
+            <summary>
+            Methode for deleting an entity from the database.
+            </summary>
+            <param name="id">Identity code of the entity to delete.</param>
+        </member>
+        <member name="M:DataAccess.DAO`1.GetSingle(System.Int32)">
+            <summary>
+            Methode for getting single entity from the database.
+            </summary>
+            <param name="id">Identity code.</param>
+            <returns>Entity with given id.</returns>
+        </member>
+        <member name="M:DataAccess.DAO`1.GetAll">
+            <summary>
+            Method for getting all entities from the table.
+            </summary>
+            <returns>List of entities.</returns>
+        </member>
+    </members>
+</doc>

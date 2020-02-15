@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ORM</name>
+    </assembly>
+    <members>
+        <member name="T:ORM.AbstractDBContext">
+            <summary>
+            Class describes an abstract database context.
+            </summary>
+        </member>
+        <member name="F:ORM.AbstractDBContext.connectionString">
+            <summary>
+            Represents connection string.
+            </summary>
+        </member>
+        <member name="T:ORM.DBContext">
+            <summary>
+            Class desribes the database context.
+            </summary>
+        </member>
+        <member name="P:ORM.DBContext.Exams">
+            <summary>
+            Set of exam entities.
+            </summary>
+        </member>
+        <member name="P:ORM.DBContext.Groups">
+            <summary>
+            Set of group entities.
+            </summary>
+        </member>
+        <member name="P:ORM.DBContext.Results">
+            <summary>
+            Set of result entities.
+            </summary>
+        </member>
+        <member name="P:ORM.DBContext.Sessions">
+            <summary>
+            Set of session entities.
+            </summary>
+        </member>
+        <member name="P:ORM.DBContext.Students">
+            <summary>
+            Set of student entities.
+            </summary>
+        </member>
+        <member name="P:ORM.DBContext.Subjects">
+            <summary>
+            Set of subject entities.
+            </summary>
+        </member>
+        <member name="M:ORM.DBContext.Dispose(System.Boolean)">
+            <summary>
+            Method for disposing the database context object.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:ORM.DBContext.Dispose">
+            <summary>
+            Method for disposing the database context object.
+            </summary>
+        </member>
+        <member name="T:ORM.DbSet`1">
+            <summary>
+            Class describes the set of entities from the table of the database.
+            </summary>
+            <typeparam name="T">Universal type of entity.</typeparam>
+        </member>
+        <member name="M:ORM.DbSet`1.#ctor(System.String)">
+            <summary>
+            Constructor create an instanse of the set.
+            </summary>
+            <param name="connectionString">Argument represents connection string.</param>
+        </member>
+        <member name="M:ORM.DbSet`1.Add(`0)">
+            <summary>
+            Method for adding new entity to the set and database.
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:ORM.DbSet`1.AddRange(System.Collections.Generic.List{`0})">
+            <summary>
+            Method for adding a range of entities to the set and database.
+            </summary>
+            <param name="entities">List of entities.</param>
+        </member>
+        <member name="M:ORM.DbSet`1.Find(System.Int32)">
+            <summary>
+            Method for finding an entity with given id.
+            </summary>
+            <param name="id">Identity code of entity.</param>
+            <returns>Entity with given id.</returns>
+        </member>
+        <member name="T:ORM.GroupSessionSummaryReport">
+            <summary>
+            Class represens set of records about statistics on marks in diferent groups.
+            </summary>
+        </member>
+        <member name="M:ORM.GroupSessionSummaryReport.#ctor(System.Int32)">
+            <summary>
+            Constructor creates an instance of report.
+            </summary>
+            <param name="sessionId">Argument represents an identity code.</param>
+        </member>
+        <member name="T:ORM.StudentsToExpulsionReport">
+            <summary>
+            Class represents set of records about students in diferent groups,
+            whos minimal mark in the session less than 4.
+            </summary>
+        </member>
+        <member name="M:ORM.StudentsToExpulsionReport.#ctor(System.Int32)">
+            <summary>
+            Constructor creates an instance of report.
+            </summary>
+            <param name="sessionId">Argument represents an identity code.</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Grammar</name>
+    </assembly>
+    <members>
+        <member name="T:Grammar.Plural">
+            <summary>
+            Class provides methods for working with plural form of the words.
+            </summary>
+        </member>
+        <member name="M:Grammar.Plural.Convert(System.String)">
+            <summary>
+            Method of converting singular form of the word to plural form that word.
+            </summary>
+            <param name="singular">Argument represents singular form of the word.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

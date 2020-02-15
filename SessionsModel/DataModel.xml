@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DataModel</name>
+    </assembly>
+    <members>
+        <member name="T:DataModel.Exam">
+            <summary>
+            Class represents an entity of exam.
+            </summary>
+        </member>
+        <member name="P:DataModel.Exam.Id">
+            <summary>
+            Identity code of the exam.
+            </summary>
+        </member>
+        <member name="P:DataModel.Exam.Date">
+            <summary>
+            Date of the exam.
+            </summary>
+        </member>
+        <member name="P:DataModel.Exam.SubjectId">
+            <summary>
+            Identity code of the subject of the exam.
+            </summary>
+        </member>
+        <member name="P:DataModel.Exam.SessionId">
+            <summary>
+            Identity code of the session of the exam.
+            </summary>
+        </member>
+        <member name="T:DataModel.Group">
+            <summary>
+            Class represents an entity of th group.
+            </summary>
+        </member>
+        <member name="P:DataModel.Group.Id">
+            <summary>
+            Identity code of the group.
+            </summary>
+        </member>
+        <member name="P:DataModel.Group.Name">
+            <summary>
+            Name of the group.
+            </summary>
+        </member>
+        <member name="T:DataModel.GroupSessionSummaryRecord">
+            <summary>
+            Class represents some statistical information about marks in an group.
+            </summary>
+        </member>
+        <member name="M:DataModel.GroupSessionSummaryRecord.#ctor(System.String,System.Nullable{System.Double},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Constructor creates an instance of record.
+            </summary>
+            <param name="name">Argument represents name of group.</param>
+            <param name="averege">Argument represents average mark in group.</param>
+            <param name="minimal">Argument represents minimal mark in group.</param>
+            <param name="maximal">Argument represents maximal mark in group.</param>
+        </member>
+        <member name="P:DataModel.GroupSessionSummaryRecord.Name">
+            <summary>
+            Property represents name of group.
+            </summary>
+        </member>
+        <member name="P:DataModel.GroupSessionSummaryRecord.Averege">
+            <summary>
+            Property represents average mark in group.
+            </summary>
+        </member>
+        <member name="P:DataModel.GroupSessionSummaryRecord.Minimal">
+            <summary>
+            Property represents minimal mark in group.
+            </summary>
+        </member>
+        <member name="P:DataModel.GroupSessionSummaryRecord.Maximal">
+            <summary>
+            Property represents maximal mark in group.
+            </summary>
+        </member>
+        <member name="T:DataModel.IEntity">
+            <summary>
+            Interface that indicate entity.
+            </summary>
+        </member>
+        <member name="P:DataModel.IEntity.Id">
+            <summary>
+            Required property, that represents identity code of entity.
+            </summary>
+        </member>
+        <member name="T:DataModel.Result">
+            <summary>
+            Class represent a result of session.
+            </summary>
+        </member>
+        <member name="P:DataModel.Result.Id">
+            <summary>
+            Identity code of the result.
+            </summary>
+        </member>
+        <member name="P:DataModel.Result.StudentId">
+            <summary>
+            Identity code of the student.
+            </summary>
+        </member>
+        <member name="P:DataModel.Result.Mark">
+            <summary>
+            Mark for the exam.
+            </summary>
+        </member>
+        <member name="P:DataModel.Result.ExamId">
+            <summary>
+            Identity code of the exam.
+            </summary>
+        </member>
+        <member name="T:DataModel.Session">
+            <summary>
+            Class represents the entity of the session.
+            </summary>
+        </member>
+        <member name="P:DataModel.Session.Id">
+            <summary>
+            Identity code of the session.
+            </summary>
+        </member>
+        <member name="P:DataModel.Session.Year">
+            <summary>
+            Year of the session.
+            </summary>
+        </member>
+        <member name="P:DataModel.Session.Number">
+            <summary>
+            Number of the session in the year.
+            </summary>
+        </member>
+        <member name="T:DataModel.Student">
+            <summary>
+            Class represents the entity of the student.
+            </summary>
+        </member>
+        <member name="P:DataModel.Student.Id">
+            <summary>
+            Identity code of the student.
+            </summary>
+        </member>
+        <member name="P:DataModel.Student.FirstName">
+            <summary>
+            First name of the student.
+            </summary>
+        </member>
+        <member name="P:DataModel.Student.LastName">
+            <summary>
+            Last name of the student.
+            </summary>
+        </member>
+        <member name="P:DataModel.Student.Patronymic">
+            <summary>
+            Patronymic of the student.
+            </summary>
+        </member>
+        <member name="P:DataModel.Student.Gender">
+            <summary>
+            Gender of the student.
+            </summary>
+        </member>
+        <member name="P:DataModel.Student.BirthDate">
+            <summary>
+            Birth date of the student.
+            </summary>
+        </member>
+        <member name="P:DataModel.Student.GroupId">
+            <summary>
+            Identity code of the student.
+            </summary>
+        </member>
+        <member name="T:DataModel.StudentsToExpulsionRecord">
+            <summary>
+            Class represents information about studen, whos minimal mark in session less than 4.
+            </summary>
+        </member>
+        <member name="M:DataModel.StudentsToExpulsionRecord.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Constructor creates an instance of a record.
+            </summary>
+            <param name="groupName">Argument represents name of group.</param>
+            <param name="lastName">Argument represents last name of student.</param>
+            <param name="firstName">Argument represents first name of student.</param>
+            <param name="patronymic">Argument represents patronymic of student.</param>
+        </member>
+        <member name="P:DataModel.StudentsToExpulsionRecord.GroupName">
+            <summary>
+            Property represents name of group.
+            </summary>
+        </member>
+        <member name="P:DataModel.StudentsToExpulsionRecord.LastName">
+            <summary>
+            Property represents last name of student.
+            </summary>
+        </member>
+        <member name="P:DataModel.StudentsToExpulsionRecord.FirstName">
+            <summary>
+            Property represents first name of student.
+            </summary>
+        </member>
+        <member name="P:DataModel.StudentsToExpulsionRecord.Patronymic">
+            <summary>
+            Property represents patronymic of student.
+            </summary>
+        </member>
+        <member name="T:DataModel.Subject">
+            <summary>
+            Class represents the entity of the subject.
+            </summary>
+        </member>
+        <member name="P:DataModel.Subject.Id">
+            <summary>
+            Identity code of the subject.
+            </summary>
+        </member>
+        <member name="P:DataModel.Subject.Name">
+            <summary>
+            Name of the subject.
+            </summary>
+        </member>
+    </members>
+</doc>
