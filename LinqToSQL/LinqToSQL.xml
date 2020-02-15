@@ -1,0 +1,293 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LinqToSQL</name>
+    </assembly>
+    <members>
+        <member name="T:LinqToSQL.CRUDHelper`1">
+            <summary>
+            Static class. Provides some methods to reduce code on CRUD operations. 
+            </summary>
+            <typeparam name="T">Universal type.</typeparam>
+        </member>
+        <member name="M:LinqToSQL.CRUDHelper`1.Create(`0)">
+            <summary>
+            Method to create an entity of T type in database.
+            </summary>
+            <param name="entity">Argument represents an entity of universal type.</param>
+        </member>
+        <member name="M:LinqToSQL.CRUDHelper`1.Find(System.Int32)">
+            <summary>
+            Method to find an entity by its identity code.
+            </summary>
+            <param name="id">Argument of integer type, that represent identity code.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqToSQL.CRUDHelper`1.Delete(`0)">
+            <summary>
+            Method to delete an entity from database.
+            </summary>
+            <param name="entity">Entity to deleting.</param>
+        </member>
+        <member name="T:LinqToSQL.DynamicsRecord">
+            <summary>
+            Represents record in dynamics report.
+            </summary>
+        </member>
+        <member name="M:LinqToSQL.DynamicsRecord.#ctor(System.DateTime,System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Double})">
+            <summary>
+            Create an instanse of record(row in report).
+            </summary>
+            <param name="year">Average mark in Year.</param>
+            <param name="maths">Average mark in Maths.</param>
+            <param name="visualProgramming">Average mark in Visual Programming.</param>
+            <param name="oOP">Average mark in OOP.</param>
+            <param name="dBEngeneering">Average mark in DBEngeneering.</param>
+            <param name="modeling">Average mark in 3DModeling.</param>
+            <param name="cryptology">Average mark in Cryptology.</param>
+        </member>
+        <member name="P:LinqToSQL.DynamicsRecord.Year">
+            <summary>
+            Property represent Year for report.
+            </summary>
+        </member>
+        <member name="P:LinqToSQL.DynamicsRecord.Maths">
+            <summary>
+            Property represent average mark in maths in Year.
+            </summary>
+        </member>
+        <member name="P:LinqToSQL.DynamicsRecord.VisualProgramming">
+            <summary>
+            Property represent average mark in Visual Programming in Year.
+            </summary>
+        </member>
+        <member name="P:LinqToSQL.DynamicsRecord.OOP">
+            <summary>
+            Property represent average mark in OOP in Year.
+            </summary>
+        </member>
+        <member name="P:LinqToSQL.DynamicsRecord.DBEngeneering">
+            <summary>
+            Property represent average mark in DBEngeneering in Year.
+            </summary>
+        </member>
+        <member name="P:LinqToSQL.DynamicsRecord.Modeling">
+            <summary>
+            Property represent average mark in Modeling in Year.
+            </summary>
+        </member>
+        <member name="P:LinqToSQL.DynamicsRecord.Cryptology">
+            <summary>
+            Property represent average mark in Cryptology in Year.
+            </summary>
+        </member>
+        <member name="T:LinqToSQL.DynamicsReport">
+            <summary>
+            Class represents set of records, that describes dynamics of avarage mark in diferent aducational
+            disciplines. 
+            </summary>
+        </member>
+        <member name="M:LinqToSQL.DynamicsReport.#ctor(LinqToSQL.MapingDataContext)">
+            <summary>
+            Creates an instance of report.
+            </summary>
+            <param name="db">An instance of database context.</param>
+        </member>
+        <member name="T:LinqToSQL.ExaminerSessionSummaryRecord">
+            <summary>
+            Represents record in statistic report.
+            </summary>
+        </member>
+        <member name="M:LinqToSQL.ExaminerSessionSummaryRecord.#ctor(System.String,System.String,System.String,System.Nullable{System.Double})">
+            <summary>
+            Creates an instance of record.
+            </summary>
+            <param name="lastName">Last name of examiner.</param>
+            <param name="firstName">First name of examiner.</param>
+            <param name="patronymic">Patronymic of examiner.</param>
+            <param name="average">Average mark by examiner.</param>
+        </member>
+        <member name="P:LinqToSQL.ExaminerSessionSummaryRecord.LastName">
+            <summary>
+            Property represents last name of examiner.
+            </summary>
+        </member>
+        <member name="P:LinqToSQL.ExaminerSessionSummaryRecord.FirstName">
+            <summary>
+            Property represents first name of examiner.
+            </summary>
+        </member>
+        <member name="P:LinqToSQL.ExaminerSessionSummaryRecord.Patronymic">
+            <summary>
+            Property represents patronymic of examiner.
+            </summary>
+        </member>
+        <member name="P:LinqToSQL.ExaminerSessionSummaryRecord.Average">
+            <summary>
+            property represents average mark by examiner.
+            </summary>
+        </member>
+        <member name="T:LinqToSQL.ExaminerSessionSummaryReport">
+            <summary>
+            Class represents set of records, that descrbes some statistics on average marks.
+            </summary>
+        </member>
+        <member name="M:LinqToSQL.ExaminerSessionSummaryReport.#ctor(LinqToSQL.MapingDataContext,System.Int32)">
+            <summary>
+            Constructor creates an instance of report.
+            </summary>
+            <param name="db">Argument represents a database context.</param>
+            <param name="sessionId">Argument represents an identity code.</param>
+        </member>
+        <member name="T:LinqToSQL.GroupSessionSummaryRecord">
+            <summary>
+            Class represents some statistical information about marks in an group.
+            </summary>
+        </member>
+        <member name="M:LinqToSQL.GroupSessionSummaryRecord.#ctor(System.String,System.Nullable{System.Double},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Constructor creates an instance of record.
+            </summary>
+            <param name="name">Argument represents name of group.</param>
+            <param name="averege">Argument represents average mark in group.</param>
+            <param name="minimal">Argument represents minimal mark in group.</param>
+            <param name="maximal">Argument represents maximal mark in group.</param>
+        </member>
+        <member name="P:LinqToSQL.GroupSessionSummaryRecord.Name">
+            <summary>
+            Property represents name of group.
+            </summary>
+        </member>
+        <member name="P:LinqToSQL.GroupSessionSummaryRecord.Averege">
+            <summary>
+            Property represents average mark in group.
+            </summary>
+        </member>
+        <member name="P:LinqToSQL.GroupSessionSummaryRecord.Minimal">
+            <summary>
+            Property represents minimal mark in group.
+            </summary>
+        </member>
+        <member name="P:LinqToSQL.GroupSessionSummaryRecord.Maximal">
+            <summary>
+            Property represents maximal mark in group.
+            </summary>
+        </member>
+        <member name="T:LinqToSQL.GroupSessionSummaryReport">
+            <summary>
+            Class represens set of records about statistics on marks in diferent groups.
+            </summary>
+        </member>
+        <member name="M:LinqToSQL.GroupSessionSummaryReport.#ctor(LinqToSQL.MapingDataContext,System.Int32)">
+            <summary>
+            Constructor creates an instance of report.
+            </summary>
+            <param name="db">Argument represens a database context.</param>
+            <param name="sessionId">Argument represents an identity code.</param>
+        </member>
+        <member name="T:LinqToSQL.IEntity">
+            <summary>
+            Interface with required "id" property.
+            </summary>
+        </member>
+        <member name="P:LinqToSQL.IEntity.id">
+            <summary>
+            Property represents an identity code.
+            </summary>
+        </member>
+        <member name="T:LinqToSQL.SpecialtySessionSummaryRecord">
+            <summary>
+            Class represents some statistical information about marks on any specialty.
+            </summary>
+        </member>
+        <member name="M:LinqToSQL.SpecialtySessionSummaryRecord.#ctor(System.String,System.Nullable{System.Double})">
+            <summary>
+            Constructor creates an instance of record.
+            </summary>
+            <param name="specialty">Argument represents name of specialty.</param>
+            <param name="average">Argument represents average mark in the specialty.</param>
+        </member>
+        <member name="P:LinqToSQL.SpecialtySessionSummaryRecord.Specialty">
+            <summary>
+            Property represents name of specialty.
+            </summary>
+        </member>
+        <member name="P:LinqToSQL.SpecialtySessionSummaryRecord.Average">
+            <summary>
+            Property represents average mark in the specialty.
+            </summary>
+        </member>
+        <member name="T:LinqToSQL.SpecialtySessionSummaryReport">
+            <summary>
+            Class represens set of records about statistics on marks in diferent specialties.
+            </summary>
+        </member>
+        <member name="M:LinqToSQL.SpecialtySessionSummaryReport.#ctor(LinqToSQL.MapingDataContext,System.Int32)">
+            <summary>
+            Constructor creates an instance of report.
+            </summary>
+            <param name="db">Argument represens a database context.</param>
+            <param name="sessionId">Argument represents an identity code.</param>
+        </member>
+        <member name="T:LinqToSQL.StudentsToExpulsionReport">
+            <summary>
+            Class represents set of records about students in diferent groups,
+            whos minimal mark in the session less than 4.
+            </summary>
+        </member>
+        <member name="M:LinqToSQL.StudentsToExpulsionReport.#ctor(LinqToSQL.MapingDataContext,System.Int32)">
+            <summary>
+            Constructor creates an instance of report.
+            </summary>
+            <param name="db">Argument represents a database context.</param>
+            <param name="sessionId">Argument represents an identity code.</param>
+        </member>
+        <member name="T:LinqToSQL.StudentsToExpulsionRecord">
+            <summary>
+            Class represents information about studen, whos minimal mark in session less than 4.
+            </summary>
+        </member>
+        <member name="M:LinqToSQL.StudentsToExpulsionRecord.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Constructor creates an instance of a record.
+            </summary>
+            <param name="groupName">Argument represents name of group.</param>
+            <param name="lastName">Argument represents last name of student.</param>
+            <param name="firstName">Argument represents first name of student.</param>
+            <param name="patronymic">Argument represents patronymic of student.</param>
+        </member>
+        <member name="P:LinqToSQL.StudentsToExpulsionRecord.GroupName">
+            <summary>
+            Property represents name of group.
+            </summary>
+        </member>
+        <member name="P:LinqToSQL.StudentsToExpulsionRecord.LastName">
+            <summary>
+            Property represents last name of student.
+            </summary>
+        </member>
+        <member name="P:LinqToSQL.StudentsToExpulsionRecord.FirstName">
+            <summary>
+            Property represents first name of student.
+            </summary>
+        </member>
+        <member name="P:LinqToSQL.StudentsToExpulsionRecord.Patronymic">
+            <summary>
+            Property represents patronymic of student.
+            </summary>
+        </member>
+        <member name="T:LinqToSQL.XlsxSerializer`1">
+            <summary>
+            Generic class, that provide serialization in xlsx format.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:LinqToSQL.XlsxSerializer`1.Serialize(`0,System.String)">
+            <summary>
+            Method to serialize any list to xls(xlsx) format.
+            </summary>
+            <param name="report">Argument represents any List.</param>
+            <param name="outputFileName">Argument represents name of output file.</param>
+        </member>
+    </members>
+</doc>
